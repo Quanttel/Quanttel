@@ -9,22 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ========================
-   Variáveis de cores
-========================= */
 :root{
   --accent:#00c3ff;
   --btn:#0056b3;
   --btn-hover:#003f7f;
   --btn-hover-gold:#FFD700;
   --card-bg:rgba(0,0,0,0.65);
-  --glass:rgba(255,255,255,0.05);
+  --glass:rgba(255,255,255,0.25);
   --light-border:rgba(255,255,255,0.12);
 }
 
-/* ========================
-   Reset e corpo
-========================= */
+/* Reset e corpo */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 html,body{height:100%;}
 body{
@@ -43,49 +38,20 @@ body::after{
 }
 a{text-decoration:none;color:inherit;transition:all .25s;}
 
-/* ========================
-   Header - Desktop (>=980px)
-========================= */
+/* Header */
 header{
   position:relative;
   width:100%;
   z-index:999;
-  height:220px;
+  padding-top:20px;
 }
 
-/* Logo centralizada horizontalmente */
-.header-left{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translateX(-50%) translateY(-10%);
-}
-
-/* Logo Quanttel */
-.header-left img.quanttel-logo{
-  height:200px;
-  width:auto;
-  background:none !important;
-  border:none !important;
-}
-
-/* Robô posicionado à direita da logo */
-.robo-img{
-  position:absolute;
-  top:-40px;
-  left:420px;
-  height:200px;
-  width:auto;
-  cursor:pointer;
-  transition:transform .45s,filter .35s;
-}
-.robo-img:hover{ transform:scale(1.15); filter:brightness(1.05); }
-
-/* Título abaixo da logo */
+/* Título central */
 .header-center{
-  position:relative; /* fluxo natural abaixo da logo */
   text-align:center;
-  margin-top:10px; /* distância da logo */
+  margin-top:10px;
+  position:relative;
+  z-index:100;
 }
 .logo-text{
   font-size:2rem;
@@ -95,20 +61,55 @@ header{
   position:relative;
   display:inline-block;
 }
+/* Luz azul apenas nas letras quando hover */
 .logo-text::after{
   content:"";
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top:0; left:0;
+  width:100%; height:100%;
   background:linear-gradient(120deg,transparent,rgba(0,195,255,0.5),transparent);
   opacity:0;
   pointer-events:none;
-  transition:opacity 1.5s ease; /* efeito mais lento */
+  transition:opacity 1.5s ease;
 }
 .logo-text:hover::after{
   opacity:1;
+}
+
+/* Container da logo e robô */
+.logo-container{
+  position:relative;
+  width:100%;
+  text-align:center;
+  margin-top:20px;
+}
+.logo-container .quanttel-logo{
+  height:150px;
+  width:auto;
+  object-fit:contain;
+  background:none !important;
+  border:none !important;
+  border-radius:0 !important;
+  transition:transform .35s ease, filter .25s ease;
+}
+.logo-container .quanttel-logo:hover{
+  transform:scale(1.08);
+  filter:brightness(1.03);
+}
+/* Robô posicionado à direita da logo, maior e mais baixo */
+.logo-container .robo-img{
+  position:absolute;
+  top:50px;
+  left:50%;
+  transform:translateX(220px);
+  height:220px;
+  width:auto;
+  cursor:pointer;
+  transition:transform .45s,filter .35s;
+}
+.logo-container .robo-img:hover{
+  transform:translateX(220px) scale(1.15);
+  filter:brightness(1.05);
 }
 
 /* Menu topo direito */
@@ -118,11 +119,10 @@ header{
   right:28px;
   display:flex;
   gap:12px;
+  z-index:1000;
 }
 
-/* ========================
-   Botões
-========================= */
+/* Botões */
 .btn,.nav-btn{
   display:inline-block;
   padding:12px 24px;
@@ -152,9 +152,7 @@ header{
 .btn:hover::before,.nav-btn:hover::before{animation:shine 1s forwards;}
 @keyframes shine{0%{left:-80%;}100%{left:160%;}}
 
-/* ========================
-   Cards
-========================= */
+/* Cards */
 main{
   max-width:1200px;
   margin:60px auto 60px;
@@ -169,7 +167,7 @@ main{
   opacity:0;
   transform:translateY(40px);
   transition:transform .35s ease,box-shadow .35s ease,opacity .6s ease;
-  position:relative;z-index:1;
+  position:relative; z-index:1;
   margin-bottom:40px;
 }
 .card.visible{opacity:1;transform:translateY(0);}
@@ -221,7 +219,7 @@ main{
 /* Contato */
 .contact-card{
   margin-top:40px;
-  background:rgba(255,255,255,0.2);
+  background:var(--glass);
   padding:24px 20px;
   border-radius:12px;
   text-align:center;
@@ -248,7 +246,7 @@ footer{
   font-size:0.95rem;
 }
 
-/* WhatsApp apenas imagem */
+/* WhatsApp */
 .whatsapp-float{
   position:fixed;
   bottom:22px;
@@ -260,46 +258,19 @@ footer{
 }
 .whatsapp-float img{max-width:90px;max-height:90px;display:block;}
 
-/* ========================
-   Responsividade
-========================= */
+/* Responsividade refinada */
 @media(max-width:980px){
-  /* Logo centralizada, robô abaixo */
-  .header-left{
-    position:relative;
-    top:0;
-    left:0;
-    transform:none;
-    text-align:center;
-  }
-  .robo-img{
-    position:relative;
-    top:0;
-    left:0;
-    margin-top:10px;
-    height:170px;
-  }
-  .header-center{
-    position:relative;
-    top:0;
-    left:0;
-    margin-top:10px;
-    text-align:center;
-  }
-  .header-right{
-    position:relative;
-    top:0;
-    right:0;
-    margin-top:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-  .btn,.nav-btn{width:90%; text-align:center; padding:10px 0;}
+  .logo-container .robo-img{ transform:translateX(150px); height:190px; top:30px; }
+  .logo-container .quanttel-logo{ height:140px; }
+  .logo-text{font-size:1.8rem;}
 }
 @media(max-width:620px){
-  .header-left img.quanttel-logo{height:120px;}
-  .robo-img{height:130px;}
+  .logo-container .robo-img{ transform:translateX(80px); height:150px; top:20px; }
+  .logo-container .quanttel-logo{ height:120px; margin-top:10px; }
+  .header-center,.header-right{text-align:center;position:relative;top:0;right:0;}
   .logo-text{font-size:1.4rem;}
+  .header-right{flex-direction:column; gap:8px; margin-top:10px;}
+  #services .services-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -307,15 +278,15 @@ footer{
 <body>
 
 <header>
-  <!-- Logo + Robô -->
-  <div class="header-left">
-    <img src="quanttel-logo.png" alt="Logo Quanttel" class="quanttel-logo" />
-    <img src="robo.png" alt="Robô" class="robo-img" />
-  </div>
-
-  <!-- Título abaixo da logo -->
+  <!-- Título no topo -->
   <div class="header-center">
     <h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1>
+  </div>
+
+  <!-- Container da logo + robô -->
+  <div class="logo-container">
+    <img src="quanttel-logo.png" alt="Logo Quanttel" class="quanttel-logo" />
+    <img src="robo.png" alt="Robô" class="robo-img" />
   </div>
 
   <!-- Menu topo direito -->
@@ -343,7 +314,6 @@ footer{
     <div class="extra-card" id="testeGratis"><div class="title">Teste Grátis</div><div class="content"><p>Teste grátis por 7 dias, entre em contato.</p></div></div>
   </div>
 
-  <!-- Serviços -->
   <section id="services">
     <div class="card">
       <h3>Nossas funcionalidades</h3>
@@ -358,29 +328,62 @@ footer{
     </div>
   </section>
 
-  <!-- Contato -->
   <section id="contact">
     <div class="card contact-card">
       <h3>Contato</h3>
-      <a href="mailto:contato@quanttel.com.br"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217l-8 4.8-8-4.8V4z"/><path d="M0 5.383v6.617a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.383l-8 4.8-8-4.8z"/></svg>contato@quanttel.com.br</a><br>
-      <a href="https://wa.me/5544991617583" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a7.5 7.5 0 0 1 10.607 10.607l-1.414-1.414a6.5 6.5 0 1 0-9.172-9.172L3.654 1.328z"/><path d="M1.5 1.5l13 13"/></svg>+55 44 99161-7583</a>
+      <a href="mailto:contato@quanttel.com.br">contato@quanttel.com.br</a><br>
+      <a href="https://wa.me/5544991617583" target="_blank">+55 44 99161-7583</a>
     </div>
   </section>
 </main>
 
 <footer>
-  <div style="max-width:1200px;margin:0 auto;padding:12px 20px;">
-    <div>© 2022 Quanttel Telecom</div>
-  </div>
+  &copy; 2025 Quanttel Telecom. Todos os direitos reservados.
 </footer>
 
 <!-- WhatsApp flutuante -->
-<a href="https://wa.me/5544991617583" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">
-  <img src="wts.png" alt="WhatsApp">
-</a>
+<a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
-<!-- Scripts -->
 <script>
+// Mostrar/ocultar extra cards
+document.getElementById('toggleCards').addEventListener('click',()=>{
+  const extra = document.getElementById('extraCards');
+  if(extra.style.maxHeight && extra.style.maxHeight !== "0px"){
+    extra.style.maxHeight = "0";
+    extra.style.opacity = 0;
+    extra.setAttribute('aria-hidden','true');
+  } else {
+    extra.style.maxHeight = extra.scrollHeight + "px";
+    extra.style.opacity = 1;
+    extra.setAttribute('aria-hidden','false');
+  }
+});
+document.getElementById('openExtraCards').addEventListener('click',(e)=>{
+  e.preventDefault();
+  const extra = document.getElementById('extraCards');
+  if(extra.style.maxHeight && extra.style.maxHeight !== "0px"){
+    extra.style.maxHeight = "0";
+    extra.style.opacity = 0;
+    extra.setAttribute('aria-hidden','true');
+  } else {
+    extra.style.maxHeight = extra.scrollHeight + "px";
+    extra.style.opacity = 1;
+    extra.setAttribute('aria-hidden','false');
+  }
+});
+
+// Suavizar scroll
+document.querySelectorAll('a[href="#contact"]').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+  });
+});
+document.getElementById('testeGratis').addEventListener('click',()=>{
+  document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+});
+
+// Animar cards ao scroll
 function revealCards(){
   document.querySelectorAll('.card').forEach(card=>{
     if(card.getBoundingClientRect().top < window.innerHeight - 100){
@@ -390,45 +393,6 @@ function revealCards(){
 }
 window.addEventListener('scroll',revealCards);
 window.addEventListener('load',revealCards);
-
-const toggleBtn = document.getElementById('toggleCards');
-const extraCards = document.getElementById('extraCards');
-toggleBtn.addEventListener('click',()=>{
-  if(extraCards.style.maxHeight && extraCards.style.maxHeight !== "0px"){
-    extraCards.style.maxHeight = "0px";
-    extraCards.style.opacity = 0;
-    extraCards.setAttribute('aria-hidden','true');
-  } else {
-    extraCards.style.maxHeight = extraCards.scrollHeight + "px";
-    extraCards.style.opacity = 1;
-    extraCards.setAttribute('aria-hidden','false');
-  }
-});
-
-document.getElementById('openExtraCards').addEventListener('click', (e)=>{
-  e.preventDefault();
-  if(extraCards.style.maxHeight && extraCards.style.maxHeight !== "0px"){
-    extraCards.style.maxHeight = "0px";
-    extraCards.style.opacity = 0;
-    extraCards.setAttribute('aria-hidden','true');
-  } else {
-    extraCards.style.maxHeight = extraCards.scrollHeight + "px";
-    extraCards.style.opacity = 1;
-    extraCards.setAttribute('aria-hidden','false');
-    extraCards.scrollIntoView({behavior:'smooth'});
-  }
-});
-
-document.querySelectorAll('a[href="#contact"]').forEach(link=>{
-  link.addEventListener('click', function(e){
-    e.preventDefault();
-    document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
-  });
-});
-
-document.getElementById('testeGratis').addEventListener('click',()=>{
-  document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
-});
 </script>
 
 </body>
