@@ -61,7 +61,6 @@ header{
   position:relative;
   display:inline-block;
 }
-/* Luz azul apenas nas letras quando hover */
 .logo-text::after{
   content:"";
   position:absolute;
@@ -87,16 +86,12 @@ header{
   height:150px;
   width:auto;
   object-fit:contain;
-  background:none !important;
-  border:none !important;
-  border-radius:0 !important;
   transition:transform .35s ease, filter .25s ease;
 }
 .logo-container .quanttel-logo:hover{
   transform:scale(1.08);
   filter:brightness(1.03);
 }
-/* Robô posicionado à direita da logo, maior e mais baixo */
 .logo-container .robo-img{
   position:absolute;
   top:50px;
@@ -208,12 +203,6 @@ main{
 #testeGratis{background:rgba(255,255,255,0.08);color:#fff; grid-column:1/-1;justify-self:center;text-align:center; transition:background-color .3s;}
 #testeGratis:hover{background-color:#28a745;color:#fff;}
 
-/* CARD OCULTO ADICIONAL */
-#hiddenCard{
-  max-width:100%;
-  overflow-x:auto;
-}
-
 /* Serviços */
 #services{margin-top:40px;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
@@ -264,19 +253,47 @@ footer{
 }
 .whatsapp-float img{max-width:90px;max-height:90px;display:block;}
 
-/* Responsividade refinada */
+/* RESPONSIVIDADE MOBILE */
 @media(max-width:980px){
   .logo-container .robo-img{ transform:translateX(150px); height:190px; top:30px; }
   .logo-container .quanttel-logo{ height:140px; }
   .logo-text{font-size:1.8rem;}
 }
 @media(max-width:620px){
-  .logo-container .robo-img{ transform:translateX(80px); height:150px; top:20px; }
-  .logo-container .quanttel-logo{ height:120px; margin-top:10px; }
+  .logo-container .robo-img{ transform:translateX(50px); height:140px; top:25px; }
+  .logo-container .quanttel-logo{ height:100px; margin-top:10px; }
   .header-center,.header-right{text-align:center;position:relative;top:0;right:0;}
-  .logo-text{font-size:1.4rem;}
+  .logo-text{font-size:1.2rem;}
   .header-right{flex-direction:column; gap:8px; margin-top:10px;}
   #services .services-grid{grid-template-columns:1fr;}
+  .card{padding:20px;}
+  .card h2{font-size:1.4rem;}
+  .card p{font-size:0.85rem;}
+  .extra-card{padding:15px;}
+  .extra-card .title{font-size:1rem;}
+  .extra-card .content p{font-size:0.8rem;}
+  #extraCards{
+    display:flex;
+    flex-direction:row;
+    gap:12px;
+    overflow-x:auto;
+    padding-bottom:10px;
+  }
+  #extraCards .extra-card{
+    flex:0 0 auto;
+    min-width:220px;
+  }
+}
+@media(max-width:480px){
+  .logo-container .robo-img{ transform:translateX(40px); height:120px; top:20px; }
+  .logo-container .quanttel-logo{ height:80px; }
+  .logo-text{font-size:1rem;}
+  .card{padding:15px;}
+  .card h2{font-size:1.2rem;}
+  .card p{font-size:0.75rem;}
+  .extra-card{padding:12px;}
+  .extra-card .title{font-size:0.9rem;}
+  .extra-card .content p{font-size:0.7rem;}
 }
 </style>
 </head>
@@ -294,7 +311,7 @@ footer{
   </div>
 
   <div class="header-right">
-    <a class="nav-btn" id="openExtraCards" href="#hiddenCard">Serviços</a>
+    <a class="nav-btn" id="openExtraCards" href="#extraCards">Serviços</a>
     <a class="nav-btn" href="#contact">Contato</a>
   </div>
 </header>
@@ -347,7 +364,6 @@ footer{
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
 <script>
-  // Mostrar/ocultar extra cards
   function toggleExtraCards(e){
     e.preventDefault();
     const extra = document.getElementById('extraCards');
@@ -366,7 +382,6 @@ footer{
   document.getElementById('toggleCards').addEventListener('click', toggleExtraCards);
   document.getElementById('openExtraCards').addEventListener('click', toggleExtraCards);
 
-  // Suavizar scroll
   document.querySelectorAll('a[href="#contact"]').forEach(link=>{
     link.addEventListener('click',e=>{
       e.preventDefault();
@@ -378,7 +393,6 @@ footer{
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 
-  // Animar cards ao scroll
   function revealCards(){
     document.querySelectorAll('.card').forEach(card=>{
       if(card.getBoundingClientRect().top < window.innerHeight - 100){
