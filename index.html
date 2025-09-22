@@ -132,7 +132,7 @@ header{
   cursor:pointer;
   position:absolute;
   top:12px;
-  right:28px; /* ficará visível no mobile quando o header-right estiver escondido */
+  right:28px;
   z-index:1101;
   padding:8px;
   border-radius:8px;
@@ -194,19 +194,32 @@ main{
 .card .actions{ margin-top:32px; }
 .actions a{ margin-right:12px; }
 
-/* Extra Cards */
+/* Extra Cards - fechado por padrão */
 #extraCards{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:18px;
-  margin-top:20px;
-  margin-bottom:40px;
+  margin-top:0;
+  margin-bottom:0;
   max-height:0;
   opacity:0;
   overflow:hidden;
-  transition:max-height .6s ease, opacity .6s ease;
+  padding-top:0;
+  padding-bottom:0;
+  transition:max-height .5s ease, opacity .35s ease, padding .35s ease;
   justify-items:center;
+  z-index:1;
 }
+/* aberto */
+#extraCards.open{
+  max-height:2000px; /* valor grande suficiente para o conteúdo */
+  opacity:1;
+  padding-top:20px;
+  padding-bottom:40px;
+  margin-top:20px;
+  margin-bottom:40px;
+}
+
 .extra-card{
   background:var(--btn);
   padding:20px;
@@ -415,57 +428,77 @@ footer{
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
 <script>
-// Mostrar/ocultar extra cards
-document.getElementById('toggleCards').addEventListener('click',()=>{
+// FUNÇÃO ÚNICA para abrir/fechar o extraCards de forma confiável
+function toggleExtraCards(){
   const extra = document.getElementById('extraCards');
-  if(extra.style.maxHeight && extra.style.maxHeight !== "0px"){
-    extra.style.maxHeight = "0";
-    extra.style.opacity = 0;
-    extra.setAttribute('aria-hidden','true');
-  } else {
+  if(!extra) return;
+  const willOpen = !extra.classList.contains('open');
+  if(willOpen){
+    extra.classList.add('open');
+    // ajustar maxHeight para animação suave
     extra.style.maxHeight = extra.scrollHeight + "px";
-    extra.style.opacity = 1;
     extra.setAttribute('aria-hidden','false');
+  } else {
+    extra.classList.remove('open');
+    extra.style.maxHeight = "0";
+    extra.setAttribute('aria-hidden','true');
   }
-});
-document.getElementById('openExtraCards').addEventListener('click',(e)=>{
-  e.preventDefault();
+}
+
+// Event listeners para botões que já existiam
+const btnToggleCards = document.getElementById('toggleCards');
+if(btnToggleCards){
+  btnToggleCards.addEventListener('click', (e)=>{
+    e.preventDefault();
+    toggleExtraCards();
+  });
+}
+
+const openExtraBtn = document.getElementById('openExtraCards');
+if(openExtraBtn){
+  openExtraBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    toggleExtraCards();
+  });
+}
+
+// Recalcular maxHeight no resize quando estiver aberto (evita cortes ao rotacionar)
+window.addEventListener('resize', ()=>{
   const extra = document.getElementById('extraCards');
-  if(extra.style.maxHeight && extra.style.maxHeight !== "0px"){
-    extra.style.maxHeight = "0";
-    extra.style.opacity = 0;
-    extra.setAttribute('aria-hidden','true');
-  } else {
-    extra.style.maxHeight = extra.scrollHeight + "px";
-    extra.style.opacity = 1;
-    extra.setAttribute('aria-hidden','false');
+  if(extra && extra.classList.contains('open')){
+    // timeout pequeno para esperar reflow em alguns dispositivos
+    setTimeout(()=> {
+      extra.style.maxHeight = extra.scrollHeight + "px";
+    }, 120);
   }
 });
 
-// Suavizar scroll
+// Suavizar scroll e fechar menu mobile se aberto
 document.querySelectorAll('a[href="#contact"]').forEach(link=>{
   link.addEventListener('click',e=>{
     e.preventDefault();
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
     // fechar menu mobile se aberto
     const headerMenu = document.querySelector('.header-right');
-    if(headerMenu.classList.contains('active')){
+    const mt = document.getElementById('menuToggle');
+    if(headerMenu && headerMenu.classList.contains('active')){
       headerMenu.classList.remove('active');
-      const mt = document.getElementById('menuToggle');
       if(mt) mt.setAttribute('aria-expanded','false');
     }
   });
 });
-document.getElementById('testeGratis').addEventListener('click',()=>{
-  document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
-  // fechar menu mobile se aberto
-  const headerMenu = document.querySelector('.header-right');
-  if(headerMenu.classList.contains('active')){
-    headerMenu.classList.remove('active');
+const testeGratisBtn = document.getElementById('testeGratis');
+if(testeGratisBtn){
+  testeGratisBtn.addEventListener('click',()=>{
+    document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+    const headerMenu = document.querySelector('.header-right');
     const mt = document.getElementById('menuToggle');
-    if(mt) mt.setAttribute('aria-expanded','false');
-  }
-});
+    if(headerMenu && headerMenu.classList.contains('active')){
+      headerMenu.classList.remove('active');
+      if(mt) mt.setAttribute('aria-expanded','false');
+    }
+  });
+}
 
 // MENU HAMBURGUER: abrir/fechar no mobile
 const menuToggle = document.getElementById('menuToggle');
@@ -489,7 +522,7 @@ if(menuToggle){
   });
 }
 
-// Animar cards ao scroll
+// Animar cards ao scroll (mantive sua lógica original)
 function revealCards(){
   document.querySelectorAll('.card').forEach(card=>{
     if(card.getBoundingClientRect().top < window.innerHeight - 100){
