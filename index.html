@@ -61,6 +61,7 @@ header{
   position:relative;
   display:inline-block;
 }
+/* Luz azul apenas nas letras quando hover */
 .logo-text::after{
   content:"";
   position:absolute;
@@ -71,7 +72,9 @@ header{
   pointer-events:none;
   transition:opacity 1.5s ease;
 }
-.logo-text:hover::after{opacity:1;}
+.logo-text:hover::after{
+  opacity:1;
+}
 
 /* Container da logo e robô */
 .logo-container{
@@ -93,6 +96,7 @@ header{
   transform:scale(1.08);
   filter:brightness(1.03);
 }
+/* Robô posicionado à direita da logo, maior e mais baixo */
 .logo-container .robo-img{
   position:absolute;
   top:50px;
@@ -116,6 +120,22 @@ header{
   display:flex;
   gap:12px;
   z-index:1000;
+}
+
+/* Menu toggle (hamburguer) - oculto no desktop */
+.menu-toggle{
+  display:none;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:1.6rem;
+  cursor:pointer;
+  position:absolute;
+  top:12px;
+  right:28px; /* ficará visível no mobile quando o header-right estiver escondido */
+  z-index:1101;
+  padding:8px;
+  border-radius:8px;
 }
 
 /* Botões */
@@ -265,26 +285,51 @@ footer{
   .logo-container .quanttel-logo { height: 140px; }
   .logo-container .robo-img { position: relative; top: 0; left: 0; transform: none; height: 160px; }
   .logo-text { font-size: 1.6rem; }
+
+  /* garantir que menu-toggle não cubra o header-right em telas médias */
+  .menu-toggle{ right:28px; }
 }
 @media(max-width:620px){
   .logo-container .quanttel-logo { height: 110px; }
   .logo-container .robo-img { height: 120px; }
-  .header-center, .header-right {
-    text-align: center;
-    position: relative;
-    top: 0;
-    right: 0;
+  .header-center,.header-right{text-align:center;position:relative;top:0;right:0;}
+  .logo-text{font-size:1.4rem;}
+  .header-right{flex-direction:column; gap:8px; margin-top:10px;}
+
+  /* MENU: esconder o menu padrão e usar o hamburguer */
+  .header-right{
+    display:none; /* escondido inicialmente no mobile */
+    position:absolute;
+    top:62px; /* fica abaixo do header */
+    right:12px;
+    flex-direction:column;
+    background:rgba(2,6,23,0.92);
+    padding:10px;
+    border-radius:10px;
+    gap:8px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.6);
+    z-index:1100;
+    min-width:140px;
   }
-  .header-right {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+  .header-right.active{
+    display:flex; /* aparece quando o hamburguer ativa a classe */
   }
+
+  /* mostrar botao hamburguer */
+  .menu-toggle{ display:block; }
+
+  .logo-container .quanttel-logo{ height:120px; margin-top:10px; }
+  .header-center,.header-right{text-align:center;position:relative;top:0;right:0;}
+  .logo-text{font-size:1.4rem;}
+  .header-right{flex-direction:column; gap:8px; margin-top:10px;}
   .nav-btn, .btn {
     padding: 10px 18px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    display:block;
+    text-align:center;
+    width:120px;
   }
-  #services .services-grid { grid-template-columns: 1fr; }
+  #services .services-grid{grid-template-columns:1fr;}
 }
 @media(max-width:480px){
   .logo-text { font-size: 1.2rem; }
@@ -298,6 +343,7 @@ footer{
 </head>
 
 <body>
+
 <header>
   <!-- Título no topo -->
   <div class="header-center">
@@ -310,8 +356,11 @@ footer{
     <img src="robo.png" alt="Robô" class="robo-img" />
   </div>
 
+  <!-- Botão hamburguer (aparece no mobile) -->
+  <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="headerMenu">☰</button>
+
   <!-- Menu topo direito -->
-  <div class="header-right">
+  <div class="header-right" id="headerMenu">
     <a class="nav-btn" id="openExtraCards" href="#">Serviços</a>
     <a class="nav-btn" href="#contact">Contato</a>
   </div>
@@ -398,11 +447,47 @@ document.querySelectorAll('a[href="#contact"]').forEach(link=>{
   link.addEventListener('click',e=>{
     e.preventDefault();
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+    // fechar menu mobile se aberto
+    const headerMenu = document.querySelector('.header-right');
+    if(headerMenu.classList.contains('active')){
+      headerMenu.classList.remove('active');
+      const mt = document.getElementById('menuToggle');
+      if(mt) mt.setAttribute('aria-expanded','false');
+    }
   });
 });
 document.getElementById('testeGratis').addEventListener('click',()=>{
   document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+  // fechar menu mobile se aberto
+  const headerMenu = document.querySelector('.header-right');
+  if(headerMenu.classList.contains('active')){
+    headerMenu.classList.remove('active');
+    const mt = document.getElementById('menuToggle');
+    if(mt) mt.setAttribute('aria-expanded','false');
+  }
 });
+
+// MENU HAMBURGUER: abrir/fechar no mobile
+const menuToggle = document.getElementById('menuToggle');
+if(menuToggle){
+  menuToggle.addEventListener('click', ()=>{
+    const headerMenu = document.querySelector('.header-right');
+    if(!headerMenu) return;
+    const isOpen = headerMenu.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // fechar menu ao clicar em qualquer item (melhora UX no mobile)
+  document.querySelectorAll('.header-right a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      const headerMenu = document.querySelector('.header-right');
+      if(headerMenu.classList.contains('active')){
+        headerMenu.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+}
 
 // Animar cards ao scroll
 function revealCards(){
@@ -415,5 +500,6 @@ function revealCards(){
 window.addEventListener('scroll',revealCards);
 window.addEventListener('load',revealCards);
 </script>
+
 </body>
 </html>
