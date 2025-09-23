@@ -1,504 +1,275 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quanttel Telecom</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quanttel Telecom</title>
 
-  <!-- Fonte Montserrat -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    /* ============================
-       VARIÁVEIS GLOBAIS
-       Definem cores reutilizáveis usadas no CSS.
-       ============================ */
-    :root{
-      --accent:#00c3ff;
-      --btn:#0056b3;
-      --btn-hover:#003f7f;
-      --btn-hover-gold:#FFD700;
-      --card-bg:rgba(0,0,0,0.65);
-      --glass:rgba(255,255,255,0.25);
-      --light-border:rgba(255,255,255,0.12);
-    }
+<style>
+:root{
+  --accent:#00c3ff;
+  --btn:#0056b3;
+  --btn-hover:#003f7f;
+  --btn-hover-gold:#FFD700;
+  --card-bg:rgba(0,0,0,0.65);
+  --glass:rgba(255,255,255,0.25);
+  --light-border:rgba(255,255,255,0.12);
+}
 
-    /* ============================
-       RESET E ESTILOS BASE
-       Remove margens/paddings padrões e define fonte.
-       ============================ */
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
-    html,body{height:100%;}
-    body{
-      color:#fff;
-      overflow-x:hidden; /* evita barra de rolagem horizontal */
-      line-height:1.45;
-      background:url('fundo-site2.png') center/cover no-repeat fixed; /* imagem de fundo */
-    }
-    /* Overlay escuro sobre o fundo para contraste do conteúdo */
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:rgba(2,6,23,0.55);
-      z-index:-1;
-      pointer-events:none;
-    }
-    a{text-decoration:none;color:inherit;transition:all .25s;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+html,body{height:100%;}
+body{
+  color:#fff;
+  overflow-x:hidden;
+  line-height:1.45;
+  background:url('fundo-site2.png') center/cover no-repeat fixed;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,0.55);
+  z-index:-1;
+  pointer-events:none;
+}
+a{text-decoration:none;color:inherit;transition:all .25s;}
 
-    /* ============================
-       HEADER / LOGO / ROBO / MENU
-       Estrutura do topo: título, container da logo+robô e botões.
-       ============================ */
+header{position:relative;width:100%;z-index:999;padding-top:20px;}
+.header-center{text-align:center;margin-top:10px;position:relative;z-index:100;}
+.logo-text{font-size:2rem;font-weight:700;color:var(--accent);letter-spacing:-0.5px;position:relative;display:inline-block;}
+.logo-text::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(120deg,transparent,rgba(0,195,255,0.5),transparent);opacity:0;pointer-events:none;transition:opacity 1.5s ease;}
+.logo-text:hover::after{opacity:1;}
 
-    header{position:relative;width:100%;z-index:999;padding-top:20px;}
-    .header-center{ text-align:center;margin-top:10px;position:relative;z-index:100; }
+.logo-container{position:relative;width:100%;text-align:center;margin-top:20px;}
+.logo-container .quanttel-logo{height:150px;width:auto;transition:transform .35s ease, filter .25s ease;}
+.logo-container .quanttel-logo:hover{transform:scale(1.08);filter:brightness(1.03);}
+.logo-container .robo-img{position:absolute;top:50px;left:50%;transform:translateX(220px);height:220px;width:auto;cursor:pointer;transition:transform .45s,filter .35s;}
+.logo-container .robo-img:hover{transform:translateX(220px) scale(1.15);filter:brightness(1.05);}
 
-    /* Texto grande acima da logo */
-    .logo-text{
-      font-size:2rem;
-      font-weight:700;
-      color:var(--accent);
-      letter-spacing:-0.5px;
-      position:relative;
-      display:inline-block;
-    }
-    /* efeito visual sutil no hover do texto */
-    .logo-text::after{
-      content:"";
-      position:absolute; top:0; left:0; width:100%; height:100%;
-      background:linear-gradient(120deg,transparent,rgba(0,195,255,0.5),transparent);
-      opacity:0; pointer-events:none; transition:opacity 1.5s ease;
-    }
-    .logo-text:hover::after{ opacity:1; }
+.header-right{position:absolute;top:12px;right:28px;display:flex;gap:12px;z-index:1000;}
 
-    /* Container que agrupa logo + imagem do robô */
-    .logo-container{ position:relative; width:100%; text-align:center; margin-top:20px; }
+.btn,.nav-btn{display:inline-block;padding:12px 24px;border-radius:12px;font-weight:700;color:#fff;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--btn),var(--btn-hover));transition:transform .25s,box-shadow .25s,filter .25s,background .3s ease;}
+.btn.ghost{background:transparent;border:2px solid var(--light-border);}
+.btn.ghost:hover{background:var(--btn-hover-gold); color:#000;}
+.btn:hover,.nav-btn:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 16px 36px rgba(0,0,0,0.55);filter:brightness(1.08);}
+.btn::before,.nav-btn::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);transform:skewX(-20deg);}
+.btn:hover::before,.nav-btn:hover::before{animation:shine 1s forwards;}
+@keyframes shine{0%{left:-80%;}100%{left:160%;}}
 
-    /* Logo da Quanttel (arquivo quanttel-logo.png) */
-    .logo-container .quanttel-logo{
-      height:150px;
-      width:auto;
-      transition:transform .35s ease, filter .25s ease;
-    }
-    .logo-container .quanttel-logo:hover{ transform:scale(1.08); filter:brightness(1.03); }
+main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
+.card{background:var(--card-bg);border-radius:14px;padding:32px;box-shadow:0 12px 42px rgba(0,0,0,0.6);text-align:left;opacity:0;transform:translateY(40px);transition:transform .35s ease,box-shadow .35s ease,opacity .6s ease;position:relative;z-index:1;margin-bottom:40px;}
+.card.visible{opacity:1;transform:translateY(0);}
+.card:hover{transform:scale(1.03);box-shadow:0 18px 60px rgba(0,0,0,0.75);}
+.card h2{font-size:2rem;font-weight:800;margin-bottom:16px;}
+.card p{transition:transform .3s ease,color .3s ease,text-shadow .3s ease;}
+.card p:hover{transform: scale(1.04); color: var(--accent); text-shadow:0 6px 20px rgba(0,195,255,0.2);}
+.card .actions{ margin-top:32px; }
+.actions a{ margin-right:12px; }
 
-    /* ======= Robô (desktop por padrão) =======
-       - position:absolute para ficar "por cima" da header (lado direito da logo).
-       - transform:translateX(...) posiciona à direita.
-       - Mantemos hover que aumenta e dá brilho.
-    */
-    .logo-container .robo-img{
-      position:absolute;
-      top:50px;
-      left:50%;
-      transform:translateX(220px);
-      height:220px;
-      width:auto;
-      cursor:pointer;
-      transition:transform .45s,filter .35s;
-    }
-    .logo-container .robo-img:hover{
-      transform:translateX(220px) scale(1.15);
-      filter:brightness(1.05);
-    }
+#extraCards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;margin-bottom:40px;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s ease, opacity .6s ease;justify-items:center;}
+.extra-card{background:var(--btn);padding:20px;border-radius:12px;color:#fff;font-weight:700;text-align:left;cursor:pointer;transition:transform .28s, box-shadow .28s;}
+.extra-card .title{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
+.extra-card .content p{font-size:0.95rem;line-height:1.35;margin:0;}
+.extra-card:hover{transform:translateY(-6px); box-shadow:0 14px 42px rgba(0,0,0,0.45);}
+.extra-card:hover .content p{transform:scale(1.03);}
+#testeGratis{background:rgba(255,255,255,0.08);color:#fff; grid-column:1/-1;justify-self:center;text-align:center; transition:background-color .3s;}
+#testeGratis:hover{background-color:#28a745;color:#fff;}
 
-    /* Botões no canto superior direito (Serviços / Contato) */
-    .header-right{ position:absolute; top:12px; right:28px; display:flex; gap:12px; z-index:1000; }
+#services{margin-top:40px;}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
+.service{background:rgba(255,255,255,0.04);padding:18px 16px;border-radius:12px;font-weight:500;overflow:hidden;transition:all .3s;}
+.service:hover{transform:translateY(-4px) scale(1.015);background:rgba(0,195,255,0.07);color:var(--accent);}
+.service .title{font-weight:700;margin-bottom:6px;font-size:1.15rem;}
+.service p{font-size:0.95rem;line-height:1.35;margin:0;}
 
-    /* Estilo base para botões (usado também em outras partes) */
-    .btn,.nav-btn{
-      display:inline-block;
-      padding:12px 24px;
-      border-radius:12px;
-      font-weight:700;
-      color:#fff;
-      position:relative;
-      overflow:hidden;
-      background:linear-gradient(180deg,var(--btn),var(--btn-hover));
-      transition:transform .25s,box-shadow .25s,filter .25s,background .3s ease;
-    }
-    /* variante "ghost" transparente (usada em Saiba mais) */
-    .btn.ghost{ background:transparent; border:2px solid var(--light-border); }
-    .btn.ghost:hover{ background:var(--btn-hover-gold); color:#000; }
+.contact-card{margin-top:40px;background:var(--glass);padding:24px 20px;border-radius:12px;text-align:center;}
+.contact-card h3{color:#fff;margin-bottom:20px;}
+.contact-card a{color:var(--accent);font-weight:700;font-size:1.05rem;display:inline-block;margin:6px 0;transition:all .25s;}
+.contact-card a:hover{color:#00ffff;text-shadow:0 2px 14px rgba(0,195,255,0.4);text-decoration:none;}
 
-    /* hover visual nos botões */
-    .btn:hover,.nav-btn:hover{ transform:translateY(-5px) scale(1.05); box-shadow:0 16px 36px rgba(0,0,0,0.55); filter:brightness(1.08); }
+footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:center;color:rgba(255,255,255,0.95);font-size:0.95rem;}
 
-    /* efeito brilho que atravessa o botão (apenas decoração) */
-    .btn::before,.nav-btn::before{
-      content:"";
-      position:absolute; top:0; left:-75%; width:50%; height:100%;
-      background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-      transform:skewX(-20deg);
-    }
-    .btn:hover::before,.nav-btn:hover::before{ animation:shine 1s forwards; }
-    @keyframes shine{ 0%{left:-80%;}100%{left:160%;} }
+.whatsapp-float{position:fixed;bottom:22px;right:22px;z-index:1100;background:none !important;border:none;padding:0;}
+.whatsapp-float img{max-width:90px;max-height:90px;display:block;}
 
-    /* ============================
-       MAIN / CARDS / SEÇÕES
-       ============================ */
-    main{ max-width:1200px; margin:60px auto 60px; padding:0 20px; }
-    .card{
-      background:var(--card-bg);
-      border-radius:14px;
-      padding:32px;
-      box-shadow:0 12px 42px rgba(0,0,0,0.6);
-      text-align:left;
-      opacity:0;
-      transform:translateY(40px);
-      transition:transform .35s ease,box-shadow .35s ease,opacity .6s ease;
-      position:relative;
-      z-index:1;
-      margin-bottom:40px;
-    }
-    .card.visible{ opacity:1; transform:translateY(0); } /* quando entra na viewport */
-    .card:hover{ transform:scale(1.03); box-shadow:0 18px 60px rgba(0,0,0,0.75); }
-
-    .card h2{ font-size:2rem; font-weight:800; margin-bottom:16px; }
-    .card p{ transition:transform .3s ease,color .3s ease,text-shadow .3s ease; }
-    .card p:hover{ transform: scale(1.04); color: var(--accent); text-shadow:0 6px 20px rgba(0,195,255,0.2); }
-    .card .actions{ margin-top:32px; }
-    .actions a{ margin-right:12px; }
-
-    /* Cards extras (ocultos inicialmente), grid 2x2 no desktop */
-    #extraCards{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      margin-top:20px;
-      margin-bottom:40px;
-      max-height:0;     /* oculto por padrão (transição via max-height) */
-      opacity:0;
-      overflow:hidden;
-      transition:max-height .6s ease, opacity .6s ease;
-      justify-items:center;
-    }
-    .extra-card{
-      background:var(--btn);
-      padding:20px;
-      border-radius:12px;
-      color:#fff;
-      font-weight:700;
-      text-align:left;
-      cursor:pointer;
-      transition:transform .28s, box-shadow .28s;
-    }
-    .extra-card .title{ font-size:1.3rem; font-weight:700; margin-bottom:6px; }
-    .extra-card .content p{ font-size:0.95rem; line-height:1.35; margin:0; }
-    .extra-card:hover{ transform:translateY(-6px); box-shadow:0 14px 42px rgba(0,0,0,0.45); }
-    .extra-card:hover .content p{ transform:scale(1.03); }
-    /* card especial 'Teste Grátis' ocupa a linha inteira no grid */
-    #testeGratis{ background:rgba(255,255,255,0.08); color:#fff; grid-column:1/-1; justify-self:center; text-align:center; transition:background-color .3s; }
-    #testeGratis:hover{ background-color:#28a745; color:#fff; }
-
-    /* serviços (grid de funcionalidades) */
-    #services{ margin-top:40px; }
-    .services-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:12px; }
-    .service{ background:rgba(255,255,255,0.04); padding:18px 16px; border-radius:12px; font-weight:500; overflow:hidden; transition:all .3s; }
-    .service:hover{ transform:translateY(-4px) scale(1.015); background:rgba(0,195,255,0.07); color:var(--accent); }
-    .service .title{ font-weight:700; margin-bottom:6px; font-size:1.15rem; }
-    .service p{ font-size:0.95rem; line-height:1.35; margin:0; }
-
-    /* card de contato com efeito glass */
-    .contact-card{ margin-top:40px; background:var(--glass); padding:24px 20px; border-radius:12px; text-align:center; }
-    .contact-card h3{ color:#fff; margin-bottom:20px; }
-    .contact-card a{ color:var(--accent); font-weight:700; font-size:1.05rem; display:inline-block; margin:6px 0; transition:all .25s; }
-    .contact-card a:hover{ color:#00ffff; text-shadow:0 2px 14px rgba(0,195,255,0.4); text-decoration:none; }
-
-    /* rodapé simples */
-    footer{ margin-top:36px; padding:18px 14px; background:rgba(0,0,0,0.66); text-align:center; color:rgba(255,255,255,0.95); font-size:0.95rem; }
-
-    /* botão do WhatsApp fixo (imagem) */
-    .whatsapp-float{ position:fixed; bottom:22px; right:22px; z-index:1100; background:none !important; border:none; padding:0; }
-    .whatsapp-float img{ max-width:90px; max-height:90px; display:block; }
-
-    /* ============================
-       MEDIA QUERIES (RESPONSIVIDADE)
-       - Mantém layout desktop intacto.
-       - Em <=620px: robô passa a ficar abaixo da logo (position:relative)
-       - Em <=620px: botões ficam menores e menos chamativos.
-       ============================ */
-    @media(max-width:980px){
-      .logo-container .robo-img{ transform:translateX(150px); height:190px; top:30px; }
-      .logo-container .quanttel-logo{ height:140px; }
-      .logo-text{ font-size:1.8rem; }
-    }
-    @media(max-width:620px){
-      /* reorganiza logo/robo em coluna para evitar sobreposição com menu */
-      .logo-container{ display:flex; flex-direction:column; align-items:center; margin-top:10px; }
-      .logo-container .robo-img{
-        position:relative;  /* sai do absolute para não cobrir elementos */
-        transform:none;
-        top:0; left:0;
-        height:180px;
-        margin-top:15px;    /* espaço entre logo e robô */
-      }
-      .logo-container .quanttel-logo{ height:100px; }
-      .logo-text{ font-size:1.2rem; }
-
-      /* botões do header ficam menores e não ocupam toda a largura */
-      .header-right{ flex-direction:column; gap:6px; margin-top:10px; position:relative; top:0; right:0; align-items:center; }
-      .header-right .nav-btn{ width:auto; padding:8px 16px; font-size:0.85rem; border-radius:8px; opacity:0.85; }
-      .header-right .nav-btn:hover{ opacity:1; }
-
-      /* adaptando cards e grid para mobile */
-      .card{ padding:20px; }
-      .card h2{ font-size:1.4rem; }
-      .card p{ font-size:0.85rem; }
-      .extra-card{ padding:15px; }
-      .extra-card .title{ font-size:1rem; }
-      .extra-card .content p{ font-size:0.8rem; }
-      #extraCards{ display:flex; flex-direction:column; gap:12px; overflow:visible; }
-      #extraCards .extra-card{ width:100%; }
-      #services .services-grid{ grid-template-columns:1fr; }
-    }
-    @media(max-width:480px){
-      .logo-container .robo-img{ transform:translateX(40px); height:120px; top:20px; }
-      .logo-container .quanttel-logo{ height:80px; }
-      .logo-text{ font-size:1rem; }
-      .card{ padding:15px; }
-      .card h2{ font-size:1.2rem; }
-      .card p{ font-size:0.75rem; }
-      .extra-card{ padding:12px; }
-      .extra-card .title{ font-size:0.9rem; }
-      .extra-card .content p{ font-size:0.7rem; }
-    }
-  </style>
+@media(max-width:980px){
+  .logo-container .robo-img{ transform:translateX(150px); height:190px; top:30px; }
+  .logo-container .quanttel-logo{ height:140px; }
+  .logo-text{font-size:1.8rem;}
+}
+@media(max-width:620px){
+  .logo-container {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:10px;
+  }
+  .logo-container .robo-img{
+    position:relative;
+    transform:none;
+    top:0;
+    left:0;
+    height:180px;
+    margin-top:15px;
+  }
+  .logo-container .quanttel-logo{ height:100px; }
+  .logo-text{font-size:1.2rem;}
+  .header-right{
+    flex-direction:column;
+    gap:6px;
+    margin-top:12px;
+    position:relative;
+    top:0;
+    right:0;
+    align-items:center;
+  }
+  .header-right .nav-btn{
+    width:auto;
+    padding:8px 16px;
+    font-size:0.85rem;
+    border-radius:8px;
+    opacity:0.85;
+  }
+  .header-right .nav-btn:hover{ opacity:1; }
+  .header-center{text-align:center;}
+  .card{padding:20px;}
+  .card h2{font-size:1.4rem;}
+  .card p{font-size:0.85rem;}
+  .extra-card{padding:15px;}
+  .extra-card .title{font-size:1rem;}
+  .extra-card .content p{font-size:0.8rem;}
+  #extraCards{display:flex;flex-direction:column;gap:12px;overflow:visible;}
+  #extraCards .extra-card{width:100%;}
+  #services .services-grid{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .logo-container .robo-img{ height:140px; margin-top:10px; }
+  .logo-container .quanttel-logo{ height:80px; }
+  .logo-text{font-size:1rem;}
+  .card{padding:15px;}
+  .card h2{font-size:1.2rem;}
+  .card p{font-size:0.75rem;}
+  .extra-card{padding:12px;}
+  .extra-card .title{font-size:0.9rem;}
+  .extra-card .content p{font-size:0.7rem;}
+}
+</style>
 </head>
 
 <body>
-  <!-- ============================
-       HEADER: título, logo + robô, botões
-       - Mantive as mesmas imagens/nome de arquivo que você usava:
-         quanttel-logo.png, robo.png, wts.png, fundo-site2.png
-       ============================ -->
-  <header>
-    <!-- Título acima da logo -->
-    <div class="header-center">
-      <h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1>
+
+<header>
+  <div class="header-center"><h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1></div>
+  <div class="logo-container">
+    <img src="quanttel-logo.png" alt="Logo Quanttel" class="quanttel-logo" />
+    <img src="robo.png" alt="Robô" class="robo-img" />
+  </div>
+  <div class="header-right">
+    <a class="nav-btn" id="openExtraCards" href="#extraCards">Serviços</a>
+    <a class="nav-btn" href="#contact">Contato</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <h2>Conectando sua empresa ao futuro</h2>
+    <p>Oferecemos uma plataforma completa de WhatsApp com automação inteligente, agentes de I.A., chatbot, CRM Kanban, painel de métricas em tempo real, integrações com outros CRMs. Com muitas funcionalidades pensadas para escalar o atendimento da sua empresa, sua equipe ganha produtividade e seus clientes recebem um atendimento ágil, eficiente e personalizado.</p>
+    <div class="actions">
+      <a class="btn" href="#contact">Entre em contato</a>
+      <a class="btn ghost" id="toggleCards">Saiba mais</a>
     </div>
+  </div>
 
-    <!-- Container que une a logo e o robô -->
-    <div class="logo-container">
-      <!-- Logo da Quanttel (arquivo quanttel-logo.png) -->
-      <img src="quanttel-logo.png" alt="Logo Quanttel" class="quanttel-logo" />
+  <div id="extraCards" aria-hidden="true">
+    <div class="extra-card"><div class="title">Aumento de Vendas</div><div class="content"><p>Melhore a performance de atendimento com processos mais eficientes e focados em resultados.</p></div></div>
+    <div class="extra-card"><div class="title">Automação Inteligente</div><div class="content"><p>Economize tempo automatizando tarefas e interações com clientes, permitindo que sua equipe se concentre no que realmente importa.</p></div></div>
+    <div class="extra-card"><div class="title">Melhoria na Comunicação</div><div class="content"><p>Centralize todas as conversas em uma única plataforma, facilitando o acompanhamento e a gestão dos contatos.</p></div></div>
+    <div class="extra-card"><div class="title">Métricas e Dados</div><div class="content"><p>Com relatórios em tempo real, obtenha insights valiosos para ajustar suas estratégias e maximizar o desempenho.</p></div></div>
+    <div class="extra-card" id="testeGratis"><div class="title">Teste Grátis</div><div class="content"><p>Teste grátis por 7 dias, entre em contato.</p></div></div>
+  </div>
 
-      <!-- Imagem do robô (desktop: absolute; mobile: relative via media queries) -->
-      <img src="robo.png" alt="Robô" class="robo-img" />
-    </div>
-
-    <!-- Botões do header
-         - "Serviços" abre extraCards E rola até o título principal
-         - "Contato" rola até a seção #contact -->
-    <div class="header-right">
-      <a class="nav-btn" id="openExtraCards" href="#extraCards" aria-controls="extraCards" aria-expanded="false">Serviços</a>
-      <a class="nav-btn" href="#contact">Contato</a>
-    </div>
-  </header>
-
-  <!-- ============================
-       MAIN: conteúdo principal
-       - Mantive a estrutura de cards, extraCards, serviços e contato
-       ============================ -->
-  <main>
-    <!-- Card principal com título e descrição -->
+  <section id="services">
     <div class="card">
-      <h2>Conectando sua empresa ao futuro</h2>
-      <p>
-        Oferecemos uma plataforma completa de WhatsApp com automação inteligente, agentes de I.A., chatbot, CRM Kanban,
-        painel de métricas em tempo real, integrações com outros CRMs. Com muitas funcionalidades pensadas para escalar
-        o atendimento da sua empresa, sua equipe ganha produtividade e seus clientes recebem um atendimento ágil,
-        eficiente e personalizado.
-      </p>
-      <div class="actions">
-        <!-- Botão que rola até contato -->
-        <a class="btn" href="#contact">Entre em contato</a>
-        <!-- Botão que abre os cards extras (sem rolar) -->
-        <a class="btn ghost" id="toggleCards" href="#" aria-controls="extraCards" aria-expanded="false">Saiba mais</a>
+      <h3>Nossas funcionalidades</h3>
+      <div class="services-grid">
+        <div class="service"><div class="title">Integração Total</div><p>Conecte-se com WhatsApp, Facebook e Instagram.</p></div>
+        <div class="service"><div class="title">Dashboard Personalizável</div><p>Tenha uma visão clara e detalhada dos dados.</p></div>
+        <div class="service"><div class="title">Controle de Churn</div><p>Monitore e reduza a rotatividade de clientes.</p></div>
+        <div class="service"><div class="title">Gestão de Oportunidades</div><p>Identifique e capitalize as melhores oportunidades de negócios.</p></div>
+        <div class="service"><div class="title">Disparos em massa e campanhas</div><p>Envie mensagens em massa personalizadas e campanhas de marketing.</p></div>
+        <div class="service"><div class="title">Receba pagamentos de forma segura pelo WhatsApp</div><p>Otimize suas vendas e evite fraudes com nossa central de atendimento integrada.</p></div>
       </div>
     </div>
+  </section>
 
-    <!-- Cards extras (começam ocultos) - mesmo conteúdo original -->
-    <div id="extraCards" aria-hidden="true">
-      <div class="extra-card">
-        <div class="title">Aumento de Vendas</div>
-        <div class="content"><p>Melhore a performance de atendimento com processos mais eficientes e focados em resultados.</p></div>
-      </div>
-
-      <div class="extra-card">
-        <div class="title">Automação Inteligente</div>
-        <div class="content"><p>Economize tempo automatizando tarefas e interações com clientes, permitindo que sua equipe se concentre no que realmente importa.</p></div>
-      </div>
-
-      <div class="extra-card">
-        <div class="title">Melhoria na Comunicação</div>
-        <div class="content"><p>Centralize todas as conversas em uma única plataforma, facilitando o acompanhamento e a gestão dos contatos.</p></div>
-      </div>
-
-      <div class="extra-card">
-        <div class="title">Métricas e Dados</div>
-        <div class="content"><p>Com relatórios em tempo real, obtenha insights valiosos para ajustar suas estratégias e maximizar o desempenho.</p></div>
-      </div>
-
-      <div class="extra-card" id="testeGratis">
-        <div class="title">Teste Grátis</div>
-        <div class="content"><p>Teste grátis por 7 dias, entre em contato.</p></div>
-      </div>
+  <section id="contact">
+    <div class="card contact-card">
+      <h3>Contato</h3>
+      <a href="mailto:contato@quanttel.com.br">contato@quanttel.com.br</a><br>
+      <a href="https://wa.me/5544991617583" target="_blank">+55 44 99161-7583</a>
     </div>
+  </section>
+</main>
 
-    <!-- Seção de funcionalidades (grid) -->
-    <section id="services">
-      <div class="card">
-        <h3>Nossas funcionalidades</h3>
-        <div class="services-grid">
-          <div class="service"><div class="title">Integração Total</div><p>Conecte-se com WhatsApp, Facebook e Instagram.</p></div>
-          <div class="service"><div class="title">Dashboard Personalizável</div><p>Tenha uma visão clara e detalhada dos dados.</p></div>
-          <div class="service"><div class="title">Controle de Churn</div><p>Monitore e reduza a rotatividade de clientes.</p></div>
-          <div class="service"><div class="title">Gestão de Oportunidades</div><p>Identifique e capitalize as melhores oportunidades de negócios.</p></div>
-          <div class="service"><div class="title">Disparos em massa e campanhas</div><p>Envie mensagens em massa personalizadas e campanhas de marketing.</p></div>
-          <div class="service"><div class="title">Receba pagamentos de forma segura pelo WhatsApp</div><p>Otimize suas vendas e evite fraudes com nossa central de atendimento integrada.</p></div>
-        </div>
-      </div>
-    </section>
+<footer>&copy; 2025 Quanttel Telecom. Todos os direitos reservados.</footer>
+<a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
-    <!-- Seção de contato -->
-    <section id="contact">
-      <div class="card contact-card">
-        <h3>Contato</h3>
-        <a href="mailto:contato@quanttel.com.br">contato@quanttel.com.br</a><br>
-        <a href="https://wa.me/5544991617583" target="_blank">+55 44 99161-7583</a>
-      </div>
-    </section>
-  </main>
+<script>
+// Função abrir/fechar cards ocultos e rolar suavemente até o título principal
+function toggleExtraCards(scrollToTitle = false){
+  const extra = document.getElementById('extraCards');
+  const isOpen = extra.style.maxHeight && extra.style.maxHeight !== "0px";
 
-  <!-- Rodapé e WhatsApp flutuante -->
-  <footer>&copy; 2025 Quanttel Telecom. Todos os direitos reservados.</footer>
-  <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank" aria-label="Abrir WhatsApp">
-    <img src="wts.png" alt="WhatsApp">
-  </a>
+  if(isOpen){
+    extra.style.maxHeight = "0";
+    extra.style.opacity = 0;
+    extra.setAttribute('aria-hidden','true');
+  } else {
+    extra.style.maxHeight = extra.scrollHeight + "px";
+    extra.style.opacity = 1;
+    extra.setAttribute('aria-hidden','false');
 
-  <!-- ============================
-       JAVASCRIPT: interações e acessibilidade
-       - Comentários explicativos em cada bloco
-       ============================ -->
-  <script>
-    /* toggleExtraCards(scrollToTitle)
-       - Abre/fecha o painel extraCards usando transição por maxHeight + opacity.
-       - Atualiza atributos ARIA (aria-hidden e aria-expanded) para acessibilidade.
-       - Se scrollToTitle = true, após abrir, rola suavemente até o <h2> principal.
-    */
-    function toggleExtraCards(scrollToTitle = false){
-      const extra = document.getElementById('extraCards');
-
-      // isOpen verifica se já existe um maxHeight inline diferente de "0px"
-      const isOpen = extra.style.maxHeight && extra.style.maxHeight !== "0px";
-
-      if(isOpen){
-        // Fecha os cards: remove altura e torna transparente
-        extra.style.maxHeight = "0";
-        extra.style.opacity = 0;
-        extra.setAttribute('aria-hidden','true');
-
-        // Atualiza todos os elementos que controlam esse painel (aria-expanded)
-        document.querySelectorAll('[aria-controls="extraCards"]').forEach(el => {
-          el.setAttribute('aria-expanded','false');
+    if(scrollToTitle){
+      setTimeout(()=>{
+        document.querySelector('h2').scrollIntoView({
+          behavior:'smooth',
+          block:'start'
         });
-      } else {
-        // Abre os cards: define altura baseada no scrollHeight para transição suave
-        extra.style.maxHeight = extra.scrollHeight + "px";
-        extra.style.opacity = 1;
-        extra.setAttribute('aria-hidden','false');
-
-        // Marca controladores como "expanded"
-        document.querySelectorAll('[aria-controls="extraCards"]').forEach(el => {
-          el.setAttribute('aria-expanded','true');
-        });
-
-        // Se for para rolar até o título principal, espera um pouco para a animação iniciar
-        if(scrollToTitle){
-          setTimeout(()=>{
-            const title = document.querySelector('h2');
-            if(title){
-              title.scrollIntoView({ behavior:'smooth', block:'start' });
-            }
-          }, 400); // 400ms = boa sincronia com a transição de abertura
-        }
-      }
+      }, 400); // espera a animação abrir
     }
+  }
+}
 
-    /* ======= EVENTOS DE CLIQUE E TECLADO =======
-       - "Saiba mais" (toggleCards): abre/fecha sem rolar
-       - "Serviços" (openExtraCards): abre/fecha e rola até o título
-       - Também adicionamos suporte a teclado (Enter / Space) para acessibilidade
-    */
-    const btnToggle = document.getElementById('toggleCards');
-    if(btnToggle){
-      btnToggle.addEventListener('click', function(e){
-        e.preventDefault();
-        toggleExtraCards(false); // abre/fecha sem rolar ao título
-      });
-      // Suporte por teclado (Enter / Space)
-      btnToggle.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          toggleExtraCards(false);
-        }
-      });
+document.getElementById('toggleCards').addEventListener('click', toggleExtraCards);
+document.getElementById('openExtraCards').addEventListener('click', e=>{
+  e.preventDefault();
+  toggleExtraCards(true); // agora rola até o título principal
+});
+
+// Scroll suave para contato
+document.querySelectorAll('a[href="#contact"]').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+  });
+});
+document.getElementById('testeGratis').addEventListener('click', ()=>{
+  document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+});
+
+// Animar cards ao scroll
+function revealCards(){
+  document.querySelectorAll('.card').forEach(card=>{
+    if(card.getBoundingClientRect().top < window.innerHeight - 100){
+      card.classList.add('visible');
     }
+  });
+}
+window.addEventListener('scroll', revealCards);
+window.addEventListener('load', revealCards);
+</script>
 
-    const btnOpen = document.getElementById('openExtraCards');
-    if(btnOpen){
-      btnOpen.addEventListener('click', function(e){
-        e.preventDefault();
-        toggleExtraCards(true); // abre e rola até o título
-      });
-      btnOpen.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          toggleExtraCards(true);
-        }
-      });
-    }
-
-    /* ======= SCROLL SUAVE PARA CONTATO =======
-       - Para todos os links com href="#contact", prevenimos o comportamento padrão
-         e usamos scrollIntoView com behavior:'smooth'.
-    */
-    document.querySelectorAll('a[href="#contact"]').forEach(link=>{
-      link.addEventListener('click', function(e){
-        e.preventDefault();
-        const contact = document.querySelector('#contact');
-        if(contact) contact.scrollIntoView({ behavior:'smooth' });
-      });
-    });
-
-    /* ======= BOTÃO "Teste Grátis" =======
-       - Ao clicar, leva o usuário até #contact suavemente.
-    */
-    const btnTeste = document.getElementById('testeGratis');
-    if(btnTeste){
-      btnTeste.addEventListener('click', function(){
-        const contact = document.querySelector('#contact');
-        if(contact) contact.scrollIntoView({ behavior:'smooth' });
-      });
-    }
-
-    /* ======= REVEAL DOS CARDS AO SCROLL =======
-       - Verifica cada .card e adiciona classe .visible quando entra na viewport.
-       - Chamamos no scroll e no load.
-       - Observação: se a página crescer muito, pode-se adicionar throttle/debounce.
-    */
-    function revealCards(){
-      document.querySelectorAll('.card').forEach(card=>{
-        const rect = card.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 100){
-          card.classList.add('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', revealCards);
-    window.addEventListener('load', revealCards);
-  </script>
 </body>
 </html>
