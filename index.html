@@ -14,7 +14,7 @@
   --btn-hover:#003f7f;
   --btn-hover-gold:#FFD700;
   --card-bg:rgba(0,0,0,0.65);
-  --glass:rgba(255,255,255,0.25);
+  --glass:rgba(255,255,255,0.18);
   --light-border:rgba(255,255,255,0.12);
 }
 
@@ -45,8 +45,9 @@ header{position:relative;width:100%;z-index:999;padding-top:20px;}
 .logo-container{position:relative;width:100%;text-align:center;margin-top:20px;}
 .logo-container .quanttel-logo{height:150px;width:auto;transition:transform .35s ease, filter .25s ease;}
 .logo-container .quanttel-logo:hover{transform:scale(1.08);filter:brightness(1.03);}
-.logo-container .robo-img{position:absolute;top:50px;left:50%;transform:translateX(220px);height:220px;width:auto;cursor:pointer;transition:transform .45s,filter .35s;}
-.logo-container .robo-img:hover{transform:translateX(220px) scale(1.15);filter:brightness(1.05);}
+/* robo reduzido (desktop) */
+.logo-container .robo-img{position:absolute;top:50px;left:50%;transform:translateX(220px);height:160px;width:auto;cursor:pointer;transition:transform .45s,filter .35s;}
+.logo-container .robo-img:hover{transform:translateX(220px) scale(1.1);filter:brightness(1.05);}
 
 .header-right{position:absolute;top:12px;right:28px;display:flex;gap:12px;z-index:1000;}
 
@@ -68,6 +69,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
 .card .actions{ margin-top:32px; }
 .actions a{ margin-right:12px; }
 
+/* Extra cards (ocultos por padrão) */
 #extraCards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;margin-bottom:40px;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s ease, opacity .6s ease;justify-items:center;}
 .extra-card{background:var(--btn);padding:20px;border-radius:12px;color:#fff;font-weight:700;text-align:left;cursor:pointer;transition:transform .28s, box-shadow .28s;}
 .extra-card .title{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
@@ -77,6 +79,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
 #testeGratis{background:rgba(255,255,255,0.08);color:#fff; grid-column:1/-1;justify-self:center;text-align:center; transition:background-color .3s;}
 #testeGratis:hover{background-color:#28a745;color:#fff;}
 
+/* Serviços */
 #services{margin-top:40px;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
 .service{background:rgba(255,255,255,0.04);padding:18px 16px;border-radius:12px;font-weight:500;overflow:hidden;transition:all .3s;}
@@ -84,9 +87,33 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
 .service .title{font-weight:700;margin-bottom:6px;font-size:1.15rem;}
 .service p{font-size:0.95rem;line-height:1.35;margin:0;}
 
-.contact-card{margin-top:40px;background:var(--glass);padding:24px 20px;border-radius:12px;text-align:center;}
-.contact-card h3{color:#fff;margin-bottom:20px;}
-.contact-card a{color:var(--accent);font-weight:700;font-size:1.05rem;display:inline-block;margin:6px 0;transition:all .25s;}
+/* Card de contato ajustado: alinhado à esquerda, mais transparente */
+.contact-card{
+  margin-top:40px;
+  background:var(--glass); /* rgba branco mais transparente */
+  padding:20px 18px;
+  border-radius:12px;
+  text-align:left;
+  max-width:340px;
+  /* sem margin:auto — fica alinhado à esquerda do conteúdo do main */
+}
+.contact-card h3{color:#fff;margin-bottom:16px;}
+.contact-card a{
+  color:var(--accent);
+  font-weight:700;
+  font-size:1rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:8px 0;
+  transition:all .25s;
+}
+.contact-card a img.icon{
+  width:18px;
+  height:18px;
+  display:inline-block;
+  vertical-align:middle;
+}
 .contact-card a:hover{color:#00ffff;text-shadow:0 2px 14px rgba(0,195,255,0.4);text-decoration:none;}
 
 footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:center;color:rgba(255,255,255,0.95);font-size:0.95rem;}
@@ -94,8 +121,9 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 .whatsapp-float{position:fixed;bottom:22px;right:22px;z-index:1100;background:none !important;border:none;padding:0;}
 .whatsapp-float img{max-width:90px;max-height:90px;display:block;}
 
+/* Responsivo: robo menor em telas menores */
 @media(max-width:980px){
-  .logo-container .robo-img{ transform:translateX(150px); height:190px; top:30px; }
+  .logo-container .robo-img{ transform:translateX(150px); height:150px; top:30px; }
   .logo-container .quanttel-logo{ height:140px; }
   .logo-text{font-size:1.8rem;}
 }
@@ -111,7 +139,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     transform:none;
     top:0;
     left:0;
-    height:180px;
+    height:120px;
     margin-top:15px;
   }
   .logo-container .quanttel-logo{ height:100px; }
@@ -145,7 +173,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   #services .services-grid{grid-template-columns:1fr;}
 }
 @media(max-width:480px){
-  .logo-container .robo-img{ height:140px; margin-top:10px; }
+  .logo-container .robo-img{ height:100px; margin-top:10px; }
   .logo-container .quanttel-logo{ height:80px; }
   .logo-text{font-size:1rem;}
   .card{padding:15px;}
@@ -173,6 +201,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 </header>
 
 <main>
+  <!-- Card principal -->
   <div class="card">
     <h2>Conectando sua empresa ao futuro</h2>
     <p>Oferecemos uma plataforma completa de WhatsApp com automação inteligente, agentes de I.A., chatbot, CRM Kanban, painel de métricas em tempo real, integrações com outros CRMs. Com muitas funcionalidades pensadas para escalar o atendimento da sua empresa, sua equipe ganha produtividade e seus clientes recebem um atendimento ágil, eficiente e personalizado.</p>
@@ -182,6 +211,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     </div>
   </div>
 
+  <!-- Extra cards (abre com Saiba mais) -->
   <div id="extraCards" aria-hidden="true">
     <div class="extra-card"><div class="title">Aumento de Vendas</div><div class="content"><p>Melhore a performance de atendimento com processos mais eficientes e focados em resultados.</p></div></div>
     <div class="extra-card"><div class="title">Automação Inteligente</div><div class="content"><p>Economize tempo automatizando tarefas e interações com clientes, permitindo que sua equipe se concentre no que realmente importa.</p></div></div>
@@ -190,6 +220,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     <div class="extra-card" id="testeGratis"><div class="title">Teste Grátis</div><div class="content"><p>Teste grátis por 7 dias, entre em contato.</p></div></div>
   </div>
 
+  <!-- Serviços -->
   <section id="services">
     <div class="card">
       <h3>Nossas funcionalidades</h3>
@@ -204,22 +235,28 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     </div>
   </section>
 
+  <!-- Contato (alinhado à esquerda, com ícones em imagem) -->
   <section id="contact">
     <div class="card contact-card">
       <h3>Contato</h3>
-      <a href="mailto:contato@quanttel.com.br">contato@quanttel.com.br</a><br>
-      <a href="https://wa.me/5544991617583" target="_blank">+55 44 99161-7583</a>
+      <a href="mailto:contato@quanttel.com.br">
+        <img src="email-icon.png" alt="Email" class="icon"> contato@quanttel.com.br
+      </a>
+      <a href="https://wa.me/5544991617583" target="_blank">
+        <img src="phone-icon.png" alt="Telefone" class="icon"> (44) 99161-7583
+      </a>
     </div>
   </section>
 </main>
 
-<footer>&copy; 2025 Quanttel Telecom. Todos os direitos reservados.</footer>
+<footer>&copy; 2022 Quanttel Telecom. Todos os direitos reservados.</footer>
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
 <script>
-// Função abrir/fechar cards ocultos e rolar suavemente até o título principal
+// abrir/fechar cards ocultos
 function toggleExtraCards(scrollToTitle = false){
   const extra = document.getElementById('extraCards');
+  if(!extra) return;
   const isOpen = extra.style.maxHeight && extra.style.maxHeight !== "0px";
 
   if(isOpen){
@@ -233,19 +270,20 @@ function toggleExtraCards(scrollToTitle = false){
 
     if(scrollToTitle){
       setTimeout(()=>{
-        document.querySelector('h2').scrollIntoView({
-          behavior:'smooth',
-          block:'start'
-        });
+        const h2 = document.querySelector('h2');
+        if(h2) h2.scrollIntoView({behavior:'smooth', block:'start'});
       }, 400); // espera a animação abrir
     }
   }
 }
 
-document.getElementById('toggleCards').addEventListener('click', toggleExtraCards);
-document.getElementById('openExtraCards').addEventListener('click', e=>{
+const toggleBtn = document.getElementById('toggleCards');
+if(toggleBtn) toggleBtn.addEventListener('click', toggleExtraCards);
+
+const openExtraBtn = document.getElementById('openExtraCards');
+if(openExtraBtn) openExtraBtn.addEventListener('click', e=>{
   e.preventDefault();
-  toggleExtraCards(true); // agora rola até o título principal
+  toggleExtraCards(true);
 });
 
 // Scroll suave para contato
@@ -255,7 +293,8 @@ document.querySelectorAll('a[href="#contact"]').forEach(link=>{
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 });
-document.getElementById('testeGratis').addEventListener('click', ()=>{
+const testeGratis = document.getElementById('testeGratis');
+if(testeGratis) testeGratis.addEventListener('click', ()=>{
   document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
 });
 
