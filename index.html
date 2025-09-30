@@ -36,21 +36,24 @@ body::after{
 }
 a{text-decoration:none;color:inherit;transition:all .25s;}
 
-header{position:relative;width:100%;z-index:999;padding-top:20px;}
-.header-center{text-align:center;margin-top:10px;position:relative;z-index:100;}
-.logo-text{font-size:2rem;font-weight:700;color:var(--accent);letter-spacing:-0.5px;position:relative;display:inline-block;}
-.logo-text::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(120deg,transparent,rgba(0,195,255,0.5),transparent);opacity:0;pointer-events:none;transition:opacity 1.5s ease;}
-.logo-text:hover::after{opacity:1;}
+header{position:relative;width:100%;z-index:999;padding-top:20px;text-align:center;}
+.header-center{margin-top:20px;position:relative;z-index:100;}
+.logo-text{font-size:1.3rem;font-weight:700;color:var(--accent);letter-spacing:-0.5px;position:relative;display:inline-block;margin-top:10px;}
 
 .logo-container{position:relative;width:100%;text-align:center;margin-top:20px;}
-.logo-container .quanttel-logo{height:150px;width:auto;transition:transform .35s ease, filter .25s ease;}
+.logo-container .quanttel-logo{height:220px;width:auto;transition:transform .35s ease, filter .25s ease;}
 .logo-container .quanttel-logo:hover{transform:scale(1.08);filter:brightness(1.03);}
-/* robo reduzido (desktop) */
-.logo-container .robo-img{position:absolute;top:50px;left:50%;transform:translateX(220px);height:160px;width:auto;cursor:pointer;transition:transform .45s,filter .35s;}
-.logo-container .robo-img:hover{transform:translateX(220px) scale(1.1);filter:brightness(1.05);}
 
+/* Menu */
 .header-right{position:absolute;top:12px;right:28px;display:flex;gap:12px;z-index:1000;}
+.header-right .nav-btn-small{display:inline-block;padding:6px 12px;border-radius:8px;font-weight:600;color:#fff;background:transparent;position:relative;overflow:hidden;font-size:0.85rem;transition:all .25s;}
+.header-right .nav-btn-small:hover{color:var(--accent);}
 
+.submenu{display:none;position:absolute;top:40px;right:0;flex-direction:column;background:rgba(0,0,0,0.65);border-radius:8px;padding:6px 0;min-width:120px;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+.submenu a{padding:6px 16px;color:#fff;font-size:0.85rem;transition:all .25s;}
+.submenu a:hover{color:var(--accent);}
+
+/* Botões e cards */
 .btn,.nav-btn{display:inline-block;padding:12px 24px;border-radius:12px;font-weight:700;color:#fff;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--btn),var(--btn-hover));transition:transform .25s,box-shadow .25s,filter .25s,background .3s ease;}
 .btn.ghost{background:transparent;border:2px solid var(--light-border);}
 .btn.ghost:hover{background:var(--btn-hover-gold); color:#000;}
@@ -65,11 +68,11 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
 .card:hover{transform:scale(1.03);box-shadow:0 18px 60px rgba(0,0,0,0.75);}
 .card h2{font-size:2rem;font-weight:800;margin-bottom:16px;}
 .card p{transition:transform .3s ease,color .3s ease,text-shadow .3s ease;}
-.card p:hover{transform: scale(1.04); color: var(--accent); text-shadow:0 6px 20px rgba(0,195,255,0.2);}
+
 .card .actions{ margin-top:32px; }
 .actions a{ margin-right:12px; }
 
-/* Extra cards (ocultos por padrão) */
+/* Extra cards */
 #extraCards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;margin-bottom:40px;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s ease, opacity .6s ease;justify-items:center;}
 .extra-card{background:var(--btn);padding:20px;border-radius:12px;color:#fff;font-weight:700;text-align:left;cursor:pointer;transition:transform .28s, box-shadow .28s;}
 .extra-card .title{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
@@ -85,17 +88,18 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
 .service{background:rgba(255,255,255,0.04);padding:18px 16px;border-radius:12px;font-weight:500;overflow:hidden;transition:all .3s;}
 .service:hover{transform:translateY(-4px) scale(1.015);background:rgba(0,195,255,0.07);color:var(--accent);}
 .service .title{font-weight:700;margin-bottom:6px;font-size:1.15rem;}
-.service p{font-size:0.95rem;line-height:1.35;margin:0;}
 
-/* Card de contato ajustado: alinhado à esquerda, mais transparente */
+/* Card PABX IP */
+.pabx-card{background:#0056b3; border-radius:14px; padding:24px; color:#fff; margin-top:20px;}
+
+/* Card de contato */
 .contact-card{
   margin-top:40px;
-  background:var(--glass); /* rgba branco mais transparente */
+  background:var(--glass);
   padding:20px 18px;
   border-radius:12px;
   text-align:left;
   max-width:340px;
-  /* sem margin:auto — fica alinhado à esquerda do conteúdo do main */
 }
 .contact-card h3{color:#fff;margin-bottom:16px;}
 .contact-card a{
@@ -117,71 +121,22 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;}
 .contact-card a:hover{color:#00ffff;text-shadow:0 2px 14px rgba(0,195,255,0.4);text-decoration:none;}
 
 footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:center;color:rgba(255,255,255,0.95);font-size:0.95rem;}
-
 .whatsapp-float{position:fixed;bottom:22px;right:22px;z-index:1100;background:none !important;border:none;padding:0;}
 .whatsapp-float img{max-width:90px;max-height:90px;display:block;}
 
-/* Responsivo: robo menor em telas menores */
+/* Responsivo */
 @media(max-width:980px){
-  .logo-container .robo-img{ transform:translateX(150px); height:150px; top:30px; }
-  .logo-container .quanttel-logo{ height:140px; }
-  .logo-text{font-size:1.8rem;}
+  .logo-container .quanttel-logo{height:180px;}
+  .logo-text{font-size:1.1rem;}
 }
 @media(max-width:620px){
-  .logo-container {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-top:10px;
-  }
-  .logo-container .robo-img{
-    position:relative;
-    transform:none;
-    top:0;
-    left:0;
-    height:120px;
-    margin-top:15px;
-  }
-  .logo-container .quanttel-logo{ height:100px; }
-  .logo-text{font-size:1.2rem;}
-  .header-right{
-    flex-direction:column;
-    gap:6px;
-    margin-top:12px;
-    position:relative;
-    top:0;
-    right:0;
-    align-items:center;
-  }
-  .header-right .nav-btn{
-    width:auto;
-    padding:8px 16px;
-    font-size:0.85rem;
-    border-radius:8px;
-    opacity:0.85;
-  }
-  .header-right .nav-btn:hover{ opacity:1; }
-  .header-center{text-align:center;}
-  .card{padding:20px;}
-  .card h2{font-size:1.4rem;}
-  .card p{font-size:0.85rem;}
-  .extra-card{padding:15px;}
-  .extra-card .title{font-size:1rem;}
-  .extra-card .content p{font-size:0.8rem;}
-  #extraCards{display:flex;flex-direction:column;gap:12px;overflow:visible;}
-  #extraCards .extra-card{width:100%;}
-  #services .services-grid{grid-template-columns:1fr;}
+  .logo-container .quanttel-logo{height:160px;}
+  .logo-text{font-size:0.95rem;margin-top:5px;}
 }
 @media(max-width:480px){
-  .logo-container .robo-img{ height:100px; margin-top:10px; }
-  .logo-container .quanttel-logo{ height:80px; }
-  .logo-text{font-size:1rem;}
-  .card{padding:15px;}
-  .card h2{font-size:1.2rem;}
-  .card p{font-size:0.75rem;}
-  .extra-card{padding:12px;}
-  .extra-card .title{font-size:0.9rem;}
-  .extra-card .content p{font-size:0.7rem;}
+  .logo-container .quanttel-logo{height:140px;}
+  .logo-text{font-size:0.85rem;margin-top:5px;}
+  main > div[style*="display:flex"]{flex-direction:column; gap:20px;}
 }
 </style>
 </head>
@@ -192,26 +147,35 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   <div class="header-center"><h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1></div>
   <div class="logo-container">
     <img src="quanttel-logo.png" alt="Logo Quanttel" class="quanttel-logo" />
-    <img src="robo.png" alt="Robô" class="robo-img" />
   </div>
   <div class="header-right">
-    <a class="nav-btn" id="openExtraCards" href="#extraCards">Serviços</a>
-    <a class="nav-btn" href="#contact">Contato</a>
+    <div style="position:relative;">
+      <a class="nav-btn-small" id="servicesBtn" href="#">Serviços</a>
+      <div class="submenu" id="servicesSubmenu">
+        <a href="#" id="submenuWhatsapp">WhatsApp</a>
+        <a href="#" id="submenuPABX">PABX IP</a>
+      </div>
+    </div>
+    <a class="nav-btn-small" href="#contact">Contato</a>
   </div>
 </header>
 
 <main>
-  <!-- Card principal -->
-  <div class="card">
-    <h2>Conectando sua empresa ao futuro</h2>
-    <p>Oferecemos uma plataforma completa de WhatsApp com automação inteligente, agentes de I.A., chatbot, CRM Kanban, painel de métricas em tempo real, integrações com outros CRMs. Com muitas funcionalidades pensadas para escalar o atendimento da sua empresa, sua equipe ganha produtividade e seus clientes recebem um atendimento ágil, eficiente e personalizado.</p>
-    <div class="actions">
-      <a class="btn" href="#contact">Entre em contato</a>
-      <a class="btn ghost" id="toggleCards">Saiba mais</a>
+  <div style="display:flex; align-items:flex-start; gap:30px; flex-wrap:wrap;">
+    <div class="card" id="cardPrincipal" style="flex:1 1 400px; max-width:600px; text-align:left;">
+      <h2>Conectando sua empresa ao futuro</h2>
+      <p>Oferecemos uma plataforma completa de WhatsApp com automação inteligente, agentes de I.A., chatbot, CRM Kanban, painel de métricas em tempo real, integrações com outros CRMs. Com muitas funcionalidades pensadas para escalar o atendimento da sua empresa, sua equipe ganha produtividade e seus clientes recebem um atendimento ágil, eficiente e personalizado.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">Entre em contato</a>
+        <a class="btn ghost" id="toggleCards">Saiba mais</a>
+      </div>
+    </div>
+
+    <div style="flex:1 1 400px; max-width:600px; background:rgba(255,255,255,0.08); border-radius:14px; min-height:400px;">
+      <!-- Espaço para imagem futura -->
     </div>
   </div>
 
-  <!-- Extra cards (abre com Saiba mais) -->
   <div id="extraCards" aria-hidden="true">
     <div class="extra-card"><div class="title">Aumento de Vendas</div><div class="content"><p>Melhore a performance de atendimento com processos mais eficientes e focados em resultados.</p></div></div>
     <div class="extra-card"><div class="title">Automação Inteligente</div><div class="content"><p>Economize tempo automatizando tarefas e interações com clientes, permitindo que sua equipe se concentre no que realmente importa.</p></div></div>
@@ -220,7 +184,6 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     <div class="extra-card" id="testeGratis"><div class="title">Teste Grátis</div><div class="content"><p>Teste grátis por 7 dias, entre em contato.</p></div></div>
   </div>
 
-  <!-- Serviços -->
   <section id="services">
     <div class="card">
       <h3>Nossas funcionalidades</h3>
@@ -233,9 +196,14 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
         <div class="service"><div class="title">Receba pagamentos de forma segura pelo WhatsApp</div><p>Otimize suas vendas e evite fraudes com nossa central de atendimento integrada.</p></div>
       </div>
     </div>
+
+    <!-- Novo card PABX IP -->
+    <div class="pabx-card" id="cardPABX">
+      <h3>PABX IP</h3>
+      <p>Conteúdo do PABX IP será adicionado aqui.</p>
+    </div>
   </section>
 
-  <!-- Contato (alinhado à esquerda, com ícones em imagem) -->
   <section id="contact">
     <div class="card contact-card">
       <h3>Contato</h3>
@@ -269,10 +237,7 @@ function toggleExtraCards(scrollToTitle = false){
     extra.setAttribute('aria-hidden','false');
 
     if(scrollToTitle){
-      setTimeout(()=>{
-        const h2 = document.querySelector('h2');
-        if(h2) h2.scrollIntoView({behavior:'smooth', block:'start'});
-      }, 400); // espera a animação abrir
+      setTimeout(()=>{ const h2 = document.querySelector('h2'); if(h2) h2.scrollIntoView({behavior:'smooth', block:'start'}); }, 400);
     }
   }
 }
@@ -281,10 +246,7 @@ const toggleBtn = document.getElementById('toggleCards');
 if(toggleBtn) toggleBtn.addEventListener('click', toggleExtraCards);
 
 const openExtraBtn = document.getElementById('openExtraCards');
-if(openExtraBtn) openExtraBtn.addEventListener('click', e=>{
-  e.preventDefault();
-  toggleExtraCards(true);
-});
+if(openExtraBtn) openExtraBtn.addEventListener('click', e=>{ e.preventDefault(); toggleExtraCards(true); });
 
 // Scroll suave para contato
 document.querySelectorAll('a[href="#contact"]').forEach(link=>{
@@ -293,9 +255,39 @@ document.querySelectorAll('a[href="#contact"]').forEach(link=>{
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 });
+
 const testeGratis = document.getElementById('testeGratis');
 if(testeGratis) testeGratis.addEventListener('click', ()=>{
   document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+});
+
+// Submenu Serviços apenas no clique
+const servicesBtn = document.getElementById('servicesBtn');
+const submenu = document.getElementById('servicesSubmenu');
+servicesBtn.addEventListener('click', e=>{
+  e.preventDefault();
+  const isVisible = submenu.style.display === 'flex';
+  submenu.style.display = isVisible ? 'none' : 'flex';
+});
+
+// Fecha submenu se clicar fora
+document.addEventListener('click', e=>{
+  if(!servicesBtn.contains(e.target) && !submenu.contains(e.target)){
+    submenu.style.display = 'none';
+  }
+});
+
+// Scroll para WhatsApp e PABX
+document.getElementById('submenuWhatsapp').addEventListener('click', e=>{
+  e.preventDefault();
+  document.getElementById('cardPrincipal').scrollIntoView({behavior:'smooth', block:'start'});
+  submenu.style.display = 'none';
+});
+
+document.getElementById('submenuPABX').addEventListener('click', e=>{
+  e.preventDefault();
+  document.getElementById('cardPABX').scrollIntoView({behavior:'smooth', block:'start'});
+  submenu.style.display = 'none';
 });
 
 // Animar cards ao scroll
