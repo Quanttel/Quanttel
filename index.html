@@ -93,8 +93,21 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 #lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
 #lightbox .close-lightbox{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;font-weight:bold;}
 
-@media(max-width:620px){.free-images img{width:45%;}}
-@media(max-width:480px){.free-images img{width:90%;}}
+/* Ajustes mobile para extracard */
+@media(max-width:620px){
+  #extraCards {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+    margin: 20px auto;
+  }
+  .extra-card {
+    width: 100%;
+  }
+  .free-images img{width:45%;}
+}
+@media(max-width:480px){
+  .free-images img{width:90%;}
+}
 </style>
 </head>
 
@@ -155,7 +168,9 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 
 <section class="pabx-card" id="cardPABX">
   <h3>PABX IP</h3>
-  <p>Conteúdo do PABX IP será adicionado aqui.</p>
+  <p>A Quanttel Telecom oferece uma solução em nuvem que une flexibilidade, eficiência e economia, permitindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento.
+
+Com recursos avançados como gravação de chamadas, URA, filas de atendimento, tarifador, ramais ilimitados e integração com sistemas de gestão, você terá controle total sobre a comunicação da sua empresa, tornando suas operações mais ágéis, seguras e produtivas.</p>
 </section>
 
 <section id="contact">
