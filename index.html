@@ -296,7 +296,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   .logo-text{font-size:0.95rem;margin-top:5px;}
   /* ajuste mobile: limitar altura do card oculto */
   #extraCards{
-    max-height:200px; /* limite para evitar corte em qualquer celular */
+    max-height:150px; /* limite menor no mobile */
     overflow-y:auto; /* scroll interno se conteúdo exceder */
   }
 }
@@ -308,10 +308,8 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 #extraCards::-webkit-scrollbar-thumb:hover{background-color: var(--scroll-thumb-hover);}
 #extraCards::-webkit-scrollbar-track{background:transparent;}
 </style>
-</head>
 
 <body>
-
 <header>
   <div class="header-center"><h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1></div>
   <div class="logo-container">
@@ -331,7 +329,6 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 
 <main>
   <div style="display:flex;flex-wrap:wrap;gap:20px;">
-    <!-- Card principal -->
     <div class="card" id="cardPrincipal" style="flex:1;min-width:300px;">
       <h2>Conectando sua empresa ao futuro</h2>
       <p>Oferecemos uma plataforma completa de WhatsApp com automação inteligente, agentes de I.A., chatbot, CRM Kanban, painel de métricas em tempo real, integrações com outros CRMs. Com muitas funcionalidades pensadas para escalar o atendimento da sua empresa, sua equipe ganha produtividade e seus clientes recebem um atendimento ágil, eficiente e personalizado.</p>
@@ -340,11 +337,9 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
         <a class="btn ghost" id="toggleCards">Saiba mais</a>
       </div>
     </div>
-    <!-- Quadrado para futura imagem -->
     <div style="flex:1;min-width:300px;background:rgba(255,255,255,0.1);border-radius:12px;height:350px;"></div>
   </div>
 
-  <!-- Extra cards -->
   <div id="extraCards" aria-hidden="true">
     <div class="extra-card"><div class="title">Aumento de Vendas</div><div class="content"><p>Melhore a performance de atendimento com processos mais eficientes e focados em resultados.</p></div></div>
     <div class="extra-card"><div class="title">Automação Inteligente</div><div class="content"><p>Economize tempo automatizando tarefas e interações com clientes, permitindo que sua equipe se concentre no que realmente importa.</p></div></div>
@@ -353,7 +348,6 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     <div class="extra-card" id="testeGratis"><div class="title">Teste Grátis</div><div class="content"><p>Teste grátis por 7 dias, entre em contato.</p></div></div>
   </div>
 
-  <!-- Serviços -->
   <section id="services">
     <div class="card">
       <h3>Nossas funcionalidades</h3>
@@ -366,24 +360,17 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
         <div class="service"><div class="title">Receba pagamentos de forma segura pelo WhatsApp</div><p>Otimize suas vendas e evite fraudes com nossa central de atendimento integrada.</p></div>
       </div>
     </div>
-
-    <!-- Card PABX IP -->
     <div class="pabx-card" id="cardPABX">
       <h3>PABX IP</h3>
       <p>Conteúdo do PABX IP será adicionado aqui.</p>
     </div>
   </section>
 
-  <!-- Contato -->
   <section id="contact">
     <div class="card contact-card">
       <h3>Contato</h3>
-      <a href="mailto:contato@quanttel.com.br">
-        <img src="email-icon.png" alt="Email" class="icon"> contato@quanttel.com.br
-      </a>
-      <a href="https://wa.me/5544991617583" target="_blank">
-        <img src="phone-icon.png" alt="Telefone" class="icon"> (44) 99161-7583
-      </a>
+      <a href="mailto:contato@quanttel.com.br"><img src="email-icon.png" alt="Email" class="icon"> contato@quanttel.com.br</a>
+      <a href="https://wa.me/5544991617583" target="_blank"><img src="phone-icon.png" alt="Telefone" class="icon"> (44) 99161-7583</a>
     </div>
   </section>
 </main>
@@ -392,8 +379,8 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
 <script>
-// ================== FUNÇÃO CARDS OCULTOS ==================
-function toggleExtraCards(scrollToTitle = false){
+// ================== FUNÇÃO CARDS OCULTOS COM SCROLL LENTO ==================
+function toggleExtraCards(scrollToTitle = true){
   const extra = document.getElementById('extraCards');
   if(!extra) return;
   const isOpen = extra.style.maxHeight && extra.style.maxHeight !== "0px";
@@ -408,13 +395,31 @@ function toggleExtraCards(scrollToTitle = false){
     extra.setAttribute('aria-hidden','false');
 
     if(scrollToTitle){
-      setTimeout(()=>{document.getElementById('cardPrincipal').scrollIntoView({behavior:'smooth', block:'start'});},400);
+      // Rolar lentamente até o card extra
+      setTimeout(()=>{
+        const start = window.scrollY;
+        const end = extra.getBoundingClientRect().top + start - 20; // 20px acima
+        const duration = 800; // duração em ms
+        let startTime = null;
+        function animateScroll(timestamp){
+          if(!startTime) startTime = timestamp;
+          const progress = timestamp - startTime;
+          const percent = Math.min(progress / duration, 1);
+          window.scrollTo(0, start + (end - start) * percent);
+          if(progress < duration) requestAnimationFrame(animateScroll);
+        }
+        requestAnimationFrame(animateScroll);
+      }, 200);
     }
   }
 }
 
+// ================== BOTÃO "SAIBA MAIS" ==================
 const toggleBtn = document.getElementById('toggleCards');
-if(toggleBtn) toggleBtn.addEventListener('click', toggleExtraCards);
+if(toggleBtn) toggleBtn.addEventListener('click', e=>{
+  e.preventDefault();
+  toggleExtraCards(true);
+});
 
 // ================== SCROLL SUAVE PARA CONTATO ==================
 document.querySelectorAll('a[href="#contact"]').forEach(link=>{
@@ -423,7 +428,6 @@ document.querySelectorAll('a[href="#contact"]').forEach(link=>{
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 });
-
 const testeGratis = document.getElementById('testeGratis');
 if(testeGratis) testeGratis.addEventListener('click', ()=>{
   document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
@@ -448,15 +452,13 @@ servicesBtn.addEventListener('click', e=>{
   submenu.style.display = (submenu.style.display === 'flex') ? 'none' : 'flex';
   submenu.style.flexDirection = 'column';
 });
-
-// Fecha submenu ao clicar fora
 document.addEventListener('click', e=>{
   if(!servicesBtn.contains(e.target) && !submenu.contains(e.target)){
     submenu.style.display = 'none';
   }
 });
 
-// Scroll suave para WhatsApp e PABX
+// ================== SCROLL SUAVE SUBMENU ==================
 document.getElementById('submenuWhatsapp').addEventListener('click', e=>{
   e.preventDefault();
   document.getElementById('cardPrincipal').scrollIntoView({behavior:'smooth', block:'start'});
@@ -468,6 +470,5 @@ document.getElementById('submenuPABX').addEventListener('click', e=>{
   submenu.style.display = 'none';
 });
 </script>
-
 </body>
 </html>
