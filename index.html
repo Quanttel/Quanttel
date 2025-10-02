@@ -21,6 +21,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 html,body{height:100%;}
+
 body{
   color:#fff;
   overflow-x:hidden;
@@ -35,78 +36,359 @@ body::after{
   z-index:-1;
   pointer-events:none;
 }
+
 a{text-decoration:none;color:inherit;transition:all .25s;}
-header{position:relative;width:100%;z-index:999;padding-top:20px;text-align:center;}
-.header-center{margin-top:20px;position:relative;z-index:100;}
-.logo-text{font-size:1.3rem;font-weight:700;color:var(--accent);letter-spacing:-0.5px;position:relative;display:inline-block;margin-top:10px;}
-.logo-container{position:relative;width:100%;text-align:center;margin-top:20px;}
-.logo-container .quanttel-logo{height:220px;width:auto;transition:transform .35s ease, filter .25s ease;}
-.logo-container .quanttel-logo:hover{transform:scale(1.08);filter:brightness(1.03);}
-.header-right{position:absolute;top:12px;right:28px;display:flex;gap:12px;z-index:1000;}
-.header-right .nav-btn-small{display:inline-block;padding:8px 16px;min-width:80px;border-radius:8px;font-weight:600;color:#fff;background:transparent;position:relative;overflow:hidden;font-size:0.95rem;white-space:nowrap;text-align:center;transition:all .25s;}
+
+header{
+  position:relative;
+  width:100%;
+  z-index:999;
+  padding-top:20px;
+  text-align:center;
+}
+.header-center{
+  margin-top:20px;
+  position:relative;
+  z-index:100;
+}
+.logo-text{
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:-0.5px;
+  position:relative;
+  display:inline-block;
+  margin-top:10px;
+}
+.logo-container{
+  position:relative;
+  width:100%;
+  text-align:center;
+  margin-top:20px;
+}
+.logo-container .quanttel-logo{
+  height:220px;
+  width:auto;
+  transition:transform .35s ease, filter .25s ease;
+}
+.logo-container .quanttel-logo:hover{
+  transform:scale(1.08);
+  filter:brightness(1.03);
+}
+.header-right{
+  position:absolute;
+  top:12px;
+  right:28px;
+  display:flex;
+  gap:12px;
+  z-index:1000;
+}
+.header-right .nav-btn-small{
+  display:inline-block;
+  padding:8px 16px;
+  min-width:80px;
+  border-radius:8px;
+  font-weight:600;
+  color:#fff;
+  background:transparent;
+  position:relative;
+  overflow:hidden;
+  font-size:0.95rem;
+  white-space:nowrap;
+  text-align:center;
+  transition:all .25s;
+}
 .header-right .nav-btn-small:hover{color:var(--accent);}
-.btn,.nav-btn{display:inline-block;padding:12px 24px;border-radius:12px;font-weight:700;color:#fff;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--btn),var(--btn-hover));transition:transform .25s,box-shadow .25s,filter .25s,background .3s ease;}
-.btn.ghost{background:transparent;border:2px solid var(--light-border);}
-.btn.ghost:hover{background:var(--btn-hover-gold);color:#000;}
-.btn:hover,.nav-btn:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 16px 36px rgba(0,0,0,0.55);filter:brightness(1.08);}
-.btn::before,.nav-btn::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);transform:skewX(-20deg);}
-.btn:hover::before,.nav-btn:hover::before{animation:shine 1s forwards;}
-@keyframes shine{0%{left:-80%;}100%{left:160%;}}
-main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-direction:column;}
-.card{background:var(--card-bg);border-radius:14px;padding:32px;box-shadow:0 12px 42px rgba(0,0,0,0.6);text-align:left;opacity:0;transform:translateY(40px);transition:transform .35s ease,box-shadow .35s ease,opacity .6s ease;position:relative;z-index:1;margin-bottom:40px;}
+
+.btn,.nav-btn{
+  display:inline-block;
+  padding:12px 24px;
+  border-radius:12px;
+  font-weight:700;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--btn),var(--btn-hover));
+  transition:transform .25s,box-shadow .25s,filter .25s,background .3s ease;
+}
+.btn.ghost{
+  background:transparent;
+  border:2px solid var(--light-border);
+}
+.btn.ghost:hover{
+  background:var(--btn-hover-gold);
+  color:#000;
+}
+.btn:hover,.nav-btn:hover{
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 16px 36px rgba(0,0,0,0.55);
+  filter:brightness(1.08);
+}
+.btn::before,.nav-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-75%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+  transform:skewX(-20deg);
+}
+.btn:hover::before,.nav-btn:hover::before{
+  animation:shine 1s forwards;
+}
+@keyframes shine{
+  0%{left:-80%;}
+  100%{left:160%;}
+}
+
+main{
+  max-width:1200px;
+  margin:60px auto 60px;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+}
+
+.card{
+  background:var(--card-bg);
+  border-radius:14px;
+  padding:32px;
+  box-shadow:0 12px 42px rgba(0,0,0,0.6);
+  text-align:left;
+  opacity:0;
+  transform:translateY(40px);
+  transition:transform .35s ease,box-shadow .35s ease,opacity .6s ease;
+  position:relative;
+  z-index:1;
+  margin-bottom:40px;
+}
 .card.visible{opacity:1;transform:translateY(0);}
 .card:hover{transform:scale(1.03);box-shadow:0 18px 60px rgba(0,0,0,0.75);}
 .card h2{font-size:2rem;font-weight:800;margin-bottom:16px;}
 .card p{transition:transform .3s ease,color .3s ease,text-shadow .3s ease;}
 .card .actions{margin-top:32px;}
 .actions a{margin-right:12px;}
-#extraCards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:20px;margin-bottom:40px;max-height:0;opacity:0;overflow:hidden;transition: max-height 1.5s ease, opacity 1.5s ease;width:100%;justify-items:center;}
-.extra-card{background:var(--btn);padding:20px;border-radius:12px;color:#fff;font-weight:700;text-align:center;cursor:pointer;transition:transform .28s, box-shadow .28s;width:100%;}
+
+#extraCards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:20px;
+  margin-bottom:40px;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition: max-height 1.5s ease, opacity 1.5s ease;
+  width:100%;
+  justify-items:center;
+}
+.extra-card{
+  background:var(--btn);
+  padding:20px;
+  border-radius:12px;
+  color:#fff;
+  font-weight:700;
+  text-align:center;
+  cursor:pointer;
+  transition:transform .28s, box-shadow .28s;
+  width:100%;
+}
 .extra-card .title{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
 .extra-card .content p{font-size:0.95rem;line-height:1.35;margin:0;}
 .extra-card:hover{transform:translateY(-6px); box-shadow:0 14px 42px rgba(0,0,0,0.45);}
 .extra-card:hover .content p{transform:scale(1.03);}
-#testeGratis{background: transparent;color: #fff;grid-column: 1 / -1;}
+#testeGratis{
+  background: transparent;
+  color: #fff;
+  grid-column: 1 / -1;
+}
 #testeGratis:hover{background-color: var(--teste-verde);color: #fff;}
 
-.free-images{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px;position:relative;}
-.free-images img{width:300px;border-radius:12px;transition:transform 2.5s ease, opacity .6s ease;opacity:0;transform:translateY(30px);cursor:pointer;border:none;padding:0;}
-@keyframes mortalSpin{0%{transform:rotateX(0deg);}50%{transform:rotateX(360deg);}100%{transform:rotateX(0deg);}}
+.free-images{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:40px;
+  position:relative;
+}
+.free-images img{
+  width:300px;
+  border-radius:12px;
+  transition:transform 2.5s ease, opacity .6s ease;
+  opacity:0;
+  transform:translateY(30px);
+  cursor:pointer;
+  border:none;
+  padding:0;
+}
+
+@keyframes mortalSpin{
+  0%{transform:rotateX(0deg);}
+  50%{transform:rotateX(360deg);}
+  100%{transform:rotateX(0deg);}
+}
 
 #services{margin-top:40px;}
-.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
-.service{background:rgba(255,255,255,0.04);padding:18px 16px;border-radius:12px;font-weight:500;overflow:hidden;transition:all .3s;}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  margin-top:12px;
+}
+.service{
+  background:rgba(255,255,255,0.04);
+  padding:18px 16px;
+  border-radius:12px;
+  font-weight:500;
+  overflow:hidden;
+  transition:all .3s;
+}
 .service .title{font-weight:700;margin-bottom:6px;font-size:1.15rem;}
 .service:hover {transform:scale(1.05); color:#00c3ff;}
-.pabx-card{background:var(--btn);color:#fff;width:100%;margin:0;border-radius:0;box-sizing:border-box;text-align:center;padding:40px 20px;}
-.pabx-card h3{font-size:2.5rem;margin-bottom:16px;}
-.contact-card{margin-top:40px;background:var(--glass);padding:20px 18px;border-radius:12px;text-align:left;max-width:340px;}
+
+/* PABX Card Ajustes */
+.pabx-card{
+  background: linear-gradient(135deg, #001f3f, #003366); /* Azul escuro degradê */
+  color: #fff;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 60px 20px;
+}
+
+.pabx-card h3{
+  font-size:2.5rem;
+  margin-bottom:40px;
+  text-align:center !important;
+}
+
+.pabx-card .pabx-text{
+  position: relative;
+  background: rgba(0,0,0,0.25);
+  padding: 20px;
+  max-width:700px;
+  border-radius:12px;
+  text-align:left;
+  line-height:1.8;
+  overflow:hidden;
+  margin-bottom:20px; /* mais próximo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pabx-card .pabx-text:hover{
+  transform: scale(1.03);
+  box-shadow:0 16px 48px rgba(0,0,0,0.6);
+}
+
+.pabx-card .pabx-text::before{
+  content: "";
+  position: absolute;
+  top:0;
+  left:-75%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform:skewX(-20deg);
+  pointer-events:none;
+  transition: all 0.7s ease;
+}
+.pabx-card .pabx-text:hover::before{ left:150%; }
+
+.contact-card{
+  margin-top:40px;
+  background:var(--glass);
+  padding:20px 18px;
+  border-radius:12px;
+  text-align:left;
+  max-width:400px;
+  margin-left:0;
+}
 .contact-card h3{color:#fff;margin-bottom:16px;}
-.contact-card a{color:var(--accent);font-weight:700;font-size:1rem;display:flex;align-items:center;gap:8px;margin:8px 0;transition:all .25s;}
-.contact-card a img.icon{width:18px;height:18px;display:inline-block;vertical-align:middle;}
-.contact-card a:hover{color:#00ffff;text-shadow:0 2px 14px rgba(0,195,255,0.4);text-decoration:none;}
-footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:center;color:rgba(255,255,255,0.95);font-size:0.95rem;}
-.whatsapp-float{position:fixed;bottom:22px;right:22px;z-index:1100;background:none !important;border:none;padding:0;}
-.whatsapp-float img{max-width:90px;max-height:90px;display:block;}
+.contact-card a{
+  color:var(--accent);
+  font-weight:700;
+  font-size:1rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:8px 0;
+  transition:all .25s;
+}
+.contact-card a img.icon{
+  width:18px;
+  height:18px;
+  display:inline-block;
+  vertical-align:middle;
+}
+.contact-card a:hover{
+  color:#00ffff;
+  text-shadow:0 2px 14px rgba(0,195,255,0.4);
+  text-decoration:none;
+}
 
-#lightbox{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:2000;}
-#lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
-#lightbox .close-lightbox{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;font-weight:bold;}
+footer{
+  margin-top:36px;
+  padding:18px 14px;
+  background:rgba(0,0,0,0.66);
+  text-align:center;
+  color:rgba(255,255,255,0.95);
+  font-size:0.95rem;
+}
 
-/* Ajustes mobile para extracard */
+.whatsapp-float{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  z-index:1100;
+  background:none !important;
+  border:none;
+  padding:0;
+}
+.whatsapp-float img{
+  max-width:90px;
+  max-height:90px;
+  display:block;
+}
+
+#lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+#lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.8);
+}
+#lightbox .close-lightbox{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:2rem;
+  color:#fff;
+  cursor:pointer;
+  font-weight:bold;
+}
+
 @media(max-width:620px){
-  #extraCards {
-    grid-template-columns: 1fr;
-    max-width: 90%;
-    margin: 20px auto;
-  }
-  .extra-card {
-    width: 100%;
-  }
-  .free-images img{width:45%;}
+  #extraCards{ grid-template-columns:1fr; max-width:90%; margin:20px auto; }
+  .extra-card{ width:100%; }
+  .free-images img{ width:45%; }
+  .pabx-card h3{ font-size:2rem; margin-bottom:36px; }
+  .pabx-card .pabx-text{ max-width:100%; margin:0 auto; }
 }
 @media(max-width:480px){
-  .free-images img{width:90%;}
+  .free-images img{ width:90%; }
 }
 </style>
 </head>
@@ -167,10 +449,30 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 </main>
 
 <section class="pabx-card" id="cardPABX">
-  <h3>PABX IP</h3>
-  <p>A Quanttel Telecom oferece uma solução em nuvem que une flexibilidade, eficiência e economia, permitindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento.
+  <h3>PABX IP EM NUVEM</h3>
 
-Com recursos avançados como gravação de chamadas, URA, filas de atendimento, tarifador, ramais ilimitados e integração com sistemas de gestão, você terá controle total sobre a comunicação da sua empresa, tornando suas operações mais ágéis, seguras e produtivas.</p>
+  <!-- IMAGEM CENTRALIZADA ABAIXO DO H3 COM TAMANHO REDUZIDO E TRANSPARÊNCIA -->
+  <div style="display:flex; justify-content:center; margin-bottom:30px;">
+    <img src="nuvem.png" alt="Nuvem" style="max-width:220px; border-radius:12px; opacity:0.6; transition: transform 0.3s ease;" 
+         onmouseover="this.style.transform='scale(1.1)'" 
+         onmouseout="this.style.transform='scale(1)'">
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; justify-content:center;">
+    <div style="flex:1; min-width:300px;">
+      <div class="pabx-text">
+        <p>
+          A Quanttel Telecom oferece uma solução em nuvem que une flexibilidade, eficiência e economia, permitindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento.
+        </p>
+      </div>
+
+      <div class="pabx-text">
+        <p>
+          Com recursos avançados como gravação de chamadas, URA, filas de atendimento, tarifador, ramais ilimitados e integração com sistemas de gestão, você terá controle total sobre a comunicação da sua empresa, tornando suas operações mais ágéis, seguras e produtivas.
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
@@ -186,6 +488,7 @@ Com recursos avançados como gravação de chamadas, URA, filas de atendimento, 
 </section>
 
 <footer>&copy; Quanttel Telecom. Todos os direitos reservados.</footer>
+
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
 <div id="lightbox">
@@ -194,6 +497,9 @@ Com recursos avançados como gravação de chamadas, URA, filas de atendimento, 
 </div>
 
 <script>
+// Scripts intactos
+const toggleBtn = document.getElementById('toggleCards');
+if(toggleBtn) toggleBtn.addEventListener('click', ()=>toggleExtraCards(true));
 function toggleExtraCards(scrollToCard=false){
   const extra = document.getElementById('extraCards');
   if(!extra) return;
@@ -211,10 +517,6 @@ function toggleExtraCards(scrollToCard=false){
     }
   }
 }
-
-const toggleBtn = document.getElementById('toggleCards');
-if(toggleBtn) toggleBtn.addEventListener('click', ()=>toggleExtraCards(true));
-
 document.querySelectorAll('a[href="#contact"]').forEach(link=>{
   link.addEventListener('click', e=>{
     e.preventDefault();
@@ -229,14 +531,12 @@ document.querySelectorAll('.header-right a').forEach(link=>{
     if(targetEl) targetEl.scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
-
 const testeGratis = document.getElementById('testeGratis');
 if(testeGratis){
   testeGratis.addEventListener('click', ()=>{
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 }
-
 function revealCards(){
   document.querySelectorAll('.card').forEach(card=>{
     if(card.getBoundingClientRect().top < window.innerHeight - 100){
@@ -246,7 +546,6 @@ function revealCards(){
 }
 window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
-
 function revealImages(){
   document.querySelectorAll('.free-images img').forEach(img=>{
     if(img.getBoundingClientRect().top < window.innerHeight - 100){
@@ -257,18 +556,12 @@ function revealImages(){
 }
 window.addEventListener('scroll', revealImages);
 window.addEventListener('load', revealImages);
-
-/* Efeito mortal vertical em cadeia, giro único por entrada do mouse */
 const imgs = document.querySelectorAll('.free-images img');
 const imgStates = Array(imgs.length).fill(false);
-
 imgs.forEach((img,i)=>{
   img.addEventListener('mouseenter', ()=>{
     if(!imgStates[i]){
-      if(i>0 && !imgStates[i-1]) {
-        imgs[i-1].style.animation='mortalSpin 3s ease forwards';
-        imgStates[i-1]=true;
-      }
+      if(i>0 && !imgStates[i-1]) { imgs[i-1].style.animation='mortalSpin 3s ease forwards'; imgStates[i-1]=true; }
       img.style.animation='mortalSpin 3s ease forwards';
       imgStates[i]=true;
     }
@@ -276,31 +569,21 @@ imgs.forEach((img,i)=>{
   img.addEventListener('mouseleave', ()=>{
     img.style.animation='';
     imgStates[i]=false;
-    if(i>0){
-      imgs[i-1].style.animation='';
-      imgStates[i-1]=false;
-    }
+    if(i>0){ imgs[i-1].style.animation=''; imgStates[i-1]=false; }
   });
 });
-
-/* Lightbox ao clicar */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 const closeLb = lightbox.querySelector('.close-lightbox');
-
 imgs.forEach(img=>{
   img.addEventListener('click', ()=>{
     lightboxImg.src = img.src;
     lightbox.style.display='flex';
   });
 });
-
-closeLb.addEventListener('click', ()=>{
-  lightbox.style.display='none';
-});
-lightbox.addEventListener('click', e=>{
-  if(e.target===lightbox) lightbox.style.display='none';
-});
+closeLb.addEventListener('click', ()=>{ lightbox.style.display='none'; });
+lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.style.display='none'; });
 </script>
+
 </body>
 </html>
