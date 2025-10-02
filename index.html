@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Quanttel Telecom</title>
 
+<!-- Fonte principal -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -248,9 +249,8 @@ main{
 .service .title{font-weight:700;margin-bottom:6px;font-size:1.15rem;}
 .service:hover {transform:scale(1.05); color:#00c3ff;}
 
-/* PABX Card Ajustes */
 .pabx-card{
-  background: linear-gradient(135deg, #001f3f, #003366); /* Azul escuro degradê */
+  background: linear-gradient(135deg, #002147, #003366);
   color: #fff;
   width: 100%;
   margin: 0;
@@ -260,23 +260,22 @@ main{
 
 .pabx-card h3{
   font-size:2.5rem;
-  margin-bottom:40px;
+  margin-bottom:80px;
   text-align:center !important;
 }
 
 .pabx-card .pabx-text{
   position: relative;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.3);
   padding: 20px;
   max-width:700px;
   border-radius:12px;
   text-align:left;
   line-height:1.8;
   overflow:hidden;
-  margin-bottom:20px; /* mais próximo */
+  margin-bottom:20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .pabx-card .pabx-text:hover{
   transform: scale(1.03);
   box-shadow:0 16px 48px rgba(0,0,0,0.6);
@@ -384,7 +383,7 @@ footer{
   #extraCards{ grid-template-columns:1fr; max-width:90%; margin:20px auto; }
   .extra-card{ width:100%; }
   .free-images img{ width:45%; }
-  .pabx-card h3{ font-size:2rem; margin-bottom:36px; }
+  .pabx-card h3{ font-size:2rem; margin-bottom:48px; }
   .pabx-card .pabx-text{ max-width:100%; margin:0 auto; }
 }
 @media(max-width:480px){
@@ -394,7 +393,6 @@ footer{
 </head>
 
 <body>
-
 <header>
   <div class="header-center"><h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1></div>
   <div class="logo-container">
@@ -451,27 +449,57 @@ footer{
 <section class="pabx-card" id="cardPABX">
   <h3>PABX IP EM NUVEM</h3>
 
-  <!-- IMAGEM CENTRALIZADA ABAIXO DO H3 COM TAMANHO REDUZIDO E TRANSPARÊNCIA -->
-  <div style="display:flex; justify-content:center; margin-bottom:30px;">
-    <img src="nuvem.png" alt="Nuvem" style="max-width:220px; border-radius:12px; opacity:0.6; transition: transform 0.3s ease;" 
-         onmouseover="this.style.transform='scale(1.1)'" 
-         onmouseout="this.style.transform='scale(1)'">
-  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; align-items:flex-start;">
 
-  <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; justify-content:center;">
+    <!-- Textos PABX -->
     <div style="flex:1; min-width:300px;">
       <div class="pabx-text">
         <p>
           A Quanttel Telecom oferece uma solução em nuvem que une flexibilidade, eficiência e economia, permitindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento.
         </p>
       </div>
-
       <div class="pabx-text">
         <p>
           Com recursos avançados como gravação de chamadas, URA, filas de atendimento, tarifador, ramais ilimitados e integração com sistemas de gestão, você terá controle total sobre a comunicação da sua empresa, tornando suas operações mais ágéis, seguras e produtivas.
         </p>
       </div>
     </div>
+
+    <!-- Imagem da Nuvem -->
+    <div style="flex:1; min-width:250px; display:flex; justify-content:center; align-items:flex-start; margin-top:-80px;">
+      <img src="nuvem.png" alt="Nuvem" style="max-width:200px; opacity:0.7; border-radius:12px; transition:transform 0.3s ease;" 
+           onmouseover="this.style.transform='scale(1.1)'" 
+           onmouseout="this.style.transform='scale(1)'">
+    </div>
+
+    <!-- Blocos de Anotações -->
+    <div style="flex:1; min-width:250px; display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+      <div style="background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; text-align:center;">
+        <strong>Titulo</strong>
+        <p>Mais informações</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; text-align:center;">
+        <strong>Titulo</strong>
+        <p>Mais informações</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; text-align:center;">
+        <strong>Titulo</strong>
+        <p>Mais informações</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; text-align:center;">
+        <strong>Titulo</strong>
+        <p>Mais informações</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; text-align:center;">
+        <strong>Titulo</strong>
+        <p>Mais informações</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; text-align:center;">
+        <strong>Titulo</strong>
+        <p>Mais informações</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -497,9 +525,7 @@ footer{
 </div>
 
 <script>
-// Scripts intactos
-const toggleBtn = document.getElementById('toggleCards');
-if(toggleBtn) toggleBtn.addEventListener('click', ()=>toggleExtraCards(true));
+// Toggle Extra Cards
 function toggleExtraCards(scrollToCard=false){
   const extra = document.getElementById('extraCards');
   if(!extra) return;
@@ -517,12 +543,17 @@ function toggleExtraCards(scrollToCard=false){
     }
   }
 }
+
+const toggleBtn = document.getElementById('toggleCards');
+if(toggleBtn) toggleBtn.addEventListener('click', ()=>toggleExtraCards(true));
+
 document.querySelectorAll('a[href="#contact"]').forEach(link=>{
   link.addEventListener('click', e=>{
     e.preventDefault();
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 });
+
 document.querySelectorAll('.header-right a').forEach(link=>{
   link.addEventListener('click', e=>{
     e.preventDefault();
@@ -531,12 +562,14 @@ document.querySelectorAll('.header-right a').forEach(link=>{
     if(targetEl) targetEl.scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
+
 const testeGratis = document.getElementById('testeGratis');
 if(testeGratis){
   testeGratis.addEventListener('click', ()=>{
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 }
+
 function revealCards(){
   document.querySelectorAll('.card').forEach(card=>{
     if(card.getBoundingClientRect().top < window.innerHeight - 100){
@@ -546,6 +579,7 @@ function revealCards(){
 }
 window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
+
 function revealImages(){
   document.querySelectorAll('.free-images img').forEach(img=>{
     if(img.getBoundingClientRect().top < window.innerHeight - 100){
@@ -556,6 +590,7 @@ function revealImages(){
 }
 window.addEventListener('scroll', revealImages);
 window.addEventListener('load', revealImages);
+
 const imgs = document.querySelectorAll('.free-images img');
 const imgStates = Array(imgs.length).fill(false);
 imgs.forEach((img,i)=>{
@@ -572,6 +607,8 @@ imgs.forEach((img,i)=>{
     if(i>0){ imgs[i-1].style.animation=''; imgStates[i-1]=false; }
   });
 });
+
+// Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 const closeLb = lightbox.querySelector('.close-lightbox');
