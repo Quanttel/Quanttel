@@ -71,7 +71,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
   justify-content:flex-start;
   align-items:flex-start;
   padding:60px 20px;
-  width:100vw; 
+  width:100vw;
   margin-left: calc(-50vw + 50%);
   background: linear-gradient(135deg, #001f3f, #000d26);
   color:#fff;
@@ -130,18 +130,21 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 /* RESPONSIVE */
 @media(max-width:1024px){
   .pabx-card > div:first-child,
-  .pabx-card > div:nth-child(2),
-  .pabx-card > div:last-child {
+  .pabx-card > div:nth-child(2) {
     flex: 1 1 100% !important;
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
     margin-bottom: 20px;
   }
-  .pabx-card > div:nth-child(2),
-  .pabx-card > div:last-child {
-    grid-template-columns: 1fr !important;
+  .pabx-card > div:nth-child(2) {
+    grid-template-columns:repeat(2,1fr) !important;
     gap: 16px !important;
+  }
+  .pabx-card > div:last-child {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+    width: 100% !important;
   }
   .pabx-block, .pabx-block-small {
     width: 100% !important;
@@ -158,22 +161,10 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   .free-images img {
     width: 80% !important;
   }
-  .pabx-card h3{
-    font-size:2rem !important;
-  }
-  .pabx-card p{
-    font-size:0.95rem !important;
-  }
 }
 @media(max-width:480px){
   .free-images img {
     width: 90% !important;
-  }
-  .pabx-card h3{
-    font-size:1.75rem !important;
-  }
-  .pabx-card p{
-    font-size:0.9rem !important;
   }
 }
 </style>
@@ -235,7 +226,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 <!-- CARD PABX IP -->
 <section class="pabx-card" id="cardPABX">
   <div style="display:flex; flex-wrap:wrap; width:100%; gap:40px;">
-    <!-- Coluna esquerda: Título, Parágrafos, Nuvem -->
+    <!-- Coluna esquerda -->
     <div style="flex:1; min-width:300px; display:flex; flex-direction:column; gap:20px;">
       <h3>PABX IP EM NUVEM</h3>
       <p style="text-align:left;">A Quanttel Telecom oferece uma solução em nuvem que une flexibilidade, eficiência e economia, permitindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento.</p>
@@ -247,8 +238,8 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
       </div>
     </div>
 
-    <!-- Coluna direita: 6 blocos originais -->
-    <div style="flex:1; min-width:300px; display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:minmax(140px,auto); gap:24px;">
+    <!-- Coluna direita: 6 blocos principais -->
+    <div class="pabx-blocks-main" style="flex:1; min-width:300px; display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:minmax(140px,auto); gap:24px;">
       <div class="pabx-block"><strong>Baixo Investimento</strong><p>Você não precisará comprar novos equipamentos a cada 3 ou 5 anos.</p></div>
       <div class="pabx-block"><strong>Suporte Remoto</strong><p>Diminui o tempo de atendimento em até 90%.</p></div>
       <div class="pabx-block"><strong>Segurança</strong><p>As gravações e informações ficam armazenadas em nossos servidores, eliminando a necessidade de se preocupar com backups.</p></div>
