@@ -71,8 +71,8 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
   justify-content:flex-start;
   align-items:flex-start;
   padding:60px 20px;
-  width:100vw; /* ocupa toda a largura da tela */
-  margin-left: calc(-50vw + 50%); /* centraliza em relação à viewport */
+  width:100vw; 
+  margin-left: calc(-50vw + 50%);
   background: linear-gradient(135deg, #001f3f, #000d26);
   color:#fff;
   box-sizing:border-box;
@@ -130,21 +130,18 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 /* RESPONSIVE */
 @media(max-width:1024px){
   .pabx-card > div:first-child,
-  .pabx-card > div:nth-child(2) {
+  .pabx-card > div:nth-child(2),
+  .pabx-card > div:last-child {
     flex: 1 1 100% !important;
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
     margin-bottom: 20px;
   }
-  .pabx-card > div:nth-child(2) {
+  .pabx-card > div:nth-child(2),
+  .pabx-card > div:last-child {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
-  }
-  .pabx-card > div:last-child {
-    grid-template-columns: repeat(2,1fr) !important;
-    gap: 16px !important;
-    width: 100% !important;
   }
   .pabx-block, .pabx-block-small {
     width: 100% !important;
@@ -153,39 +150,30 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   .pabx-card > div:first-child div {
     text-align: center !important;
   }
-
-  /* CORREÇÃO SCROLL HORIZONTAL PABX IP */
+}
+@media(max-width:620px){
   .pabx-card {
-    width: 100% !important;
-    margin-left: 0 !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding: 40px 16px !important;
+  }
+  .free-images img {
+    width: 80% !important;
+  }
+  .pabx-card h3{
+    font-size:2rem !important;
+  }
+  .pabx-card p{
+    font-size:0.95rem !important;
   }
 }
-
-@media(max-width:768px){
-  .pabx-card > div:last-child {
-    grid-template-columns: 1fr !important; 
-    gap: 12px !important;
-  }
-  .pabx-block-small {
-    padding: 12px !important;
-  }
-}
-
 @media(max-width:480px){
-  .pabx-card {
-    padding: 20px 12px !important;
+  .free-images img {
+    width: 90% !important;
   }
-  .pabx-card > div:last-child {
-    grid-template-columns: 1fr !important; 
-    gap: 12px !important;
+  .pabx-card h3{
+    font-size:1.75rem !important;
   }
-  .pabx-block-small {
-    font-size: 0.85rem !important;
-  }
-  .pabx-card img {
-    max-width: 100% !important;
+  .pabx-card p{
+    font-size:0.9rem !important;
   }
 }
 </style>
