@@ -127,7 +127,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 #lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
 #lightbox .close-lightbox{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;font-weight:bold;}
 
-/* --- RESPONSIVE EXISTENTE --- */
+/* RESPONSIVE */
 @media(max-width:1024px){
   .pabx-card > div:first-child,
   .pabx-card > div:nth-child(2) {
@@ -142,7 +142,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
     gap: 16px !important;
   }
   .pabx-card > div:last-child {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2,1fr) !important;
     gap: 16px !important;
     width: 100% !important;
   }
@@ -153,74 +153,39 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   .pabx-card > div:first-child div {
     text-align: center !important;
   }
+
+  /* CORREÇÃO SCROLL HORIZONTAL PABX IP */
+  .pabx-card {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
 }
 
-/* --- NOVOS AJUSTES PARA MOBILE --- */
 @media(max-width:768px){
-  .header-right{
-    position: static;
-    justify-content: center;
-    margin-top: 12px;
-    flex-wrap: wrap;
-    gap: 8px;
+  .pabx-card > div:last-child {
+    grid-template-columns: 1fr !important; 
+    gap: 12px !important;
   }
-  .header-right .nav-btn-small{
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    min-width: 70px;
-  }
-  main{
-    margin: 40px auto;
-    padding: 0 12px;
-  }
-  .card{
-    padding: 24px;
-  }
-  #extraCards{
-    grid-template-columns: 1fr !important;
-  }
-  .services-grid{
-    grid-template-columns: 1fr !important;
-    gap: 16px;
+  .pabx-block-small {
+    padding: 12px !important;
   }
 }
 
 @media(max-width:480px){
-  .header-center .logo-text{
-    font-size: 1.1rem;
+  .pabx-card {
+    padding: 20px 12px !important;
   }
-  .logo-container .quanttel-logo{
-    height: 150px;
+  .pabx-card > div:last-child {
+    grid-template-columns: 1fr !important; 
+    gap: 12px !important;
   }
-  .pabx-card{
-    padding: 30px 12px !important;
-    margin-left: 0 !important;
-    width: 100% !important;
+  .pabx-block-small {
+    font-size: 0.85rem !important;
   }
-  .pabx-card h3{
-    font-size: 2rem;
-    margin-bottom: 30px;
-  }
-  .pabx-card p{
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  .pabx-card img{
-    width: 120px !important;
-  }
-  .pabx-block, .pabx-block-small{
-    padding: 12px !important;
-  }
-  .pabx-block-small .pabx-icon{
-    width: 50px;
-    margin-bottom: 8px;
-  }
-  .free-images img{
-    width: 90% !important;
-  }
-  .contact-card{
+  .pabx-card img {
     max-width: 100% !important;
-    padding: 16px !important;
   }
 }
 </style>
