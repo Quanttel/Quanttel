@@ -55,7 +55,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
 #testeGratis{background: transparent;color: #fff;grid-column: 1 / -1;}
 #testeGratis:hover{background-color: var(--teste-verde);color: #fff;}
 .free-images{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px;position:relative;}
-.free-images img{width:300px;border-radius:12px;transition:transform 2.5s ease, opacity .6s ease;opacity:0;transform:translateY(30px);cursor:pointer;border:none;padding:0;max-width:100%;height:auto;}
+.free-images img{width:300px;border-radius:12px;transition:transform 2.5s ease, opacity .6s ease;opacity:0;transform:translateY(30px);cursor:pointer;border:none;padding:0;}
 @keyframes mortalSpin{0%{transform:rotateX(0deg);}50%{transform:rotateX(360deg);}100%{transform:rotateX(0deg);}}
 #services{margin-top:40px;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
@@ -67,54 +67,29 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
 .pabx-card{
   display:flex;
   flex-direction:column;
-  flex-wrap:wrap;
-  justify-content:flex-start;
-  align-items:flex-start;
+  gap:40px;
   padding:60px 20px;
-  width:100%; /* alterado de 100vw */
-  margin-left:0; /* removido calc negativo */
-  background: linear-gradient(135deg, #001f3f, #000d26);
+  width:100%;
   color:#fff;
+  background: linear-gradient(135deg, #001f3f, #000d26);
   box-sizing:border-box;
 }
-.pabx-card h3{text-align:center;font-size:2.5rem;width:100%;margin-bottom:40px;}
-.pabx-card p{margin-left:0;line-height:1.7;margin-bottom:30px;}
-.pabx-card img{transition: transform .3s ease, opacity .3s ease; cursor:pointer;}
-.pabx-card img:hover{transform:scale(1.15);opacity:0.8;}
-.pabx-block{background:rgba(255,255,255,0.1);padding:18px;border-radius:14px;text-align:left;transition: transform .3s ease, box-shadow .3s ease; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;}
-.pabx-block:hover{transform:scale(1.05); box-shadow:0 12px 36px rgba(0,0,0,0.6);}
-.pabx-block strong{display:block;margin-bottom:6px;font-size:1.1rem;}
-.pabx-block p{font-size:0.95rem;line-height:1.4;margin:0;}
-.pabx-block-small{
-  background: linear-gradient(135deg,#0066b3,#3399cc);
-  padding:14px;
-  border-radius:14px;
-  text-align:center;
-  transition: transform .3s ease, box-shadow .3s ease;
-  display:flex; 
-  flex-direction:column; 
-  justify-content:flex-start; 
-  align-items:center;
-  cursor:pointer;
-}
-.pabx-block-small:hover{
-  transform:scale(0.95);
-  box-shadow:0 12px 36px rgba(0,0,0,0.6);
-}
-.pabx-block-small strong{display:block;margin-bottom:6px;font-size:1rem;}
-.pabx-block-small p{font-size:0.9rem;line-height:1.3;margin:0;}
-.pabx-block-small .pabx-icon{
-  width:60px;
-  max-width:80%;
-  margin-bottom:12px;
-  display:block;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.pabx-block-small:hover .pabx-icon{
-  transform:scale(0.9);
-  opacity:0.85;
-}
+.pabx-card h3{text-align:center;font-size:2.5rem;margin-bottom:40px;}
+.pabx-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.pabx-left{display:flex;flex-direction:column;gap:20px;}
+.pabx-main-img{width:140px;margin:auto;transition: transform .3s ease, opacity .3s ease; border-radius:16px; opacity:0.6; cursor:pointer;}
+.pabx-main-img:hover{transform:scale(1.15);opacity:0.8;}
+.pabx-right{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.pabx-bottom{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.pabx-block, .pabx-block-small{transition: transform .3s ease, box-shadow .3s ease; border-radius:14px; padding:18px; background:rgba(255,255,255,0.1);}
+.pabx-block:hover, .pabx-block-small:hover{transform:scale(1.05); box-shadow:0 12px 36px rgba(0,0,0,0.6);}
+.pabx-block strong, .pabx-block-small strong{display:block;margin-bottom:6px;font-size:1.1rem;}
+.pabx-block p, .pabx-block-small p{margin:0;font-size:0.95rem;line-height:1.4;}
+.pabx-block-small{background:linear-gradient(135deg,#0066b3,#3399cc);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:14px;}
+.pabx-block-small .pabx-icon{width:60px;margin-bottom:12px;transition: transform 0.3s ease, opacity 0.3s ease;}
+.pabx-block-small:hover .pabx-icon{transform:scale(0.9);opacity:0.85;}
 
+/* CONTACT & FOOTER */
 .contact-card{margin-top:40px;background:var(--glass);padding:20px 18px;border-radius:12px;text-align:left;max-width:400px;margin-left:0;}
 .contact-card h3{color:#fff;margin-bottom:16px;}
 .contact-card a{color:var(--accent);font-weight:700;font-size:1rem;display:flex;align-items:center;gap:8px;margin:8px 0;transition:all .25s;}
@@ -127,38 +102,16 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 #lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
 #lightbox .close-lightbox{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;font-weight:bold;}
 
-/* RESPONSIVE */
+/* RESPONSIVE PABX */
 @media(max-width:1024px){
-  .pabx-card > div:first-child,
-  .pabx-card > div:nth-child(2),
-  .pabx-card > div:last-child {
-    flex: 1 1 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-    margin-bottom: 20px;
-  }
-  .pabx-card > div:nth-child(2),
-  .pabx-card > div:last-child{
-    grid-template-columns:1fr !important;
-    gap:16px !important;
-  }
-  .pabx-block, .pabx-block-small {
-    width: 100% !important;
-    margin-bottom: 16px;
-  }
-  .pabx-card > div:first-child div {text-align:center !important;}
-  .pabx-card > div:last-child {
-    grid-template-columns: repeat(2,1fr);
-    gap:16px;
-  }
+  .pabx-top{grid-template-columns:1fr;}
+  .pabx-right{grid-template-columns:repeat(2,1fr);}
+  .pabx-bottom{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:620px){
-  .pabx-card {padding:40px 16px !important;}
-  .pabx-card > div:last-child {
-    grid-template-columns: 1fr;
-  }
-  .free-images img {width:80% !important;}
+  .pabx-right{grid-template-columns:1fr;}
+  .pabx-bottom{grid-template-columns:1fr;}
+  .pabx-card{padding:20px 12px;}
 }
 @media(max-width:480px){
   .free-images img {width:90% !important;}
@@ -221,21 +174,13 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 
 <!-- CARD PABX IP -->
 <section class="pabx-card" id="cardPABX">
-  <div style="display:flex; flex-wrap:wrap; width:100%; gap:40px;">
-    <!-- Coluna esquerda -->
-    <div style="flex:1; min-width:300px; display:flex; flex-direction:column; gap:20px;">
-      <h3>PABX IP EM NUVEM</h3>
-      <p style="text-align:left;">A Quanttel Telecom oferece uma solução completa em nuvem que une flexibilidade, eficiência e economia, garantindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento. Com nossa plataforma, é possível trabalhar com liberdade, mantendo a comunicação da empresa sempre ativa, sem depender de infraestrutura física ou limitações de localização.</p>
-      <p style="text-align:left;">Nossa solução inclui recursos avançados como gravação de chamadas, URA, filas de atendimento, tarifador, ramais ilimitados e integração total com sistemas de gestão, permitindo que você acompanhe todas as interações da sua equipe em tempo real. Isso proporciona controle absoluto sobre a comunicação da sua empresa, tornando as operações mais ágeis, seguras e altamente produtivas.</p>
-      <div style="text-align:center;">
-        <img src="nuvem.png" alt="Nuvem" style="width:140px; opacity:0.6; border-radius:16px; transition: transform 0.3s ease, opacity 0.3s ease;"
-             onmouseover="this.style.transform='scale(1.15)'; this.style.opacity='0.8';"
-             onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.6';">
-      </div>
+  <div class="pabx-top">
+    <div class="pabx-left">
+      <p>A Quanttel Telecom oferece uma solução completa em nuvem que une flexibilidade, eficiência e economia, garantindo que sua equipe esteja conectada de qualquer lugar e a qualquer momento. Com nossa plataforma, é possível trabalhar com liberdade, mantendo a comunicação da empresa sempre ativa, sem depender de infraestrutura física ou limitações de localização.</p>
+      <p>Nossa solução inclui recursos avançados como gravação de chamadas, URA, filas de atendimento, tarifador, ramais ilimitados e integração total com sistemas de gestão, permitindo que você acompanhe todas as interações da sua equipe em tempo real. Isso proporciona controle absoluto sobre a comunicação da sua empresa, tornando as operações mais ágeis, seguras e altamente produtivas.</p>
+      <img src="nuvem.png" alt="Nuvem" class="pabx-main-img">
     </div>
-
-    <!-- Coluna direita: 6 blocos em duas linhas -->
-    <div style="flex:1; min-width:300px; display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:minmax(140px,auto); gap:24px;">
+    <div class="pabx-right">
       <div class="pabx-block"><strong>Investimento Inteligente</strong><p>Reduza custos e mantenha sua comunicação sempre moderna, sem precisar trocar equipamentos.</p></div>
       <div class="pabx-block"><strong>Suporte</strong><p>Atendimento rápido e eficiente, resolvendo problemas antes mesmo que atrapalhem seu dia.</p></div>
       <div class="pabx-block"><strong>Segurança Total</strong><p>Todos os dados e gravações armazenados na nuvem, protegidos e sempre disponíveis.</p></div>
@@ -243,29 +188,27 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
       <div class="pabx-block"><strong>Funcionalidades Completas</strong><p>Recursos avançados liberados desde o primeiro dia, prontos para otimizar seu trabalho.</p></div>
       <div class="pabx-block"><strong>Gestão</strong><p>Relatórios em tempo real que dão controle total e insights claros sobre a comunicação com clientes.</p></div>
     </div>
-
-    <!-- Linha inferior: 4 blocos adicionais -->
-    <div style="flex:1 1 100%; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:40px;">
-      <div class="pabx-block-small">
-        <img src="mobilidade.png" alt="Flexibilidade" class="pabx-icon">
-        <strong>Flexibilidade</strong>
-        <p>Com acesso aos ramais de qualquer lugar, pelo celular ou notebook, sua equipe mantém a comunicação fluida e produtiva, transformando qualquer lugar em um escritório ágil e conectado.</p>
-      </div>
-      <div class="pabx-block-small">
-        <img src="engrenagem.png" alt="Conexão e Eficiência" class="pabx-icon">
-        <strong>Conexão e Eficiência</strong>
-        <p>O PABX IP conecta-se facilmente aos seus sistemas de gestão, como CRMs e plataformas de cobrança, e automatiza funções de atendimento, como URAs e filas, tornando o fluxo de trabalho mais ágil e oferecendo aos clientes uma experiência rápida, eficiente e inesquecível.</p>
-      </div>
-      <div class="pabx-block-small">
-        <img src="gestao.png" alt="Controle Total" class="pabx-icon">
-        <strong>Controle Total</strong>
-        <p>A ferramenta entrega relatórios completos em tempo real, oferecendo total visibilidade sobre a performance de atendimento e permitindo controlar com precisão cada interação com clientes e parceiros. Mais eficiência, mais agilidade e decisões baseadas em dados.</p>
-      </div>
-      <div class="pabx-block-small">
-        <img src="custos.png" alt="Reduz Custos" class="pabx-icon">
-        <strong>Reduz Custos</strong>
-        <p>Com o PABX IP em nuvem, você elimina completamente a dependência de equipamentos físicos, cortando gastos com manutenção e atualizações. Tudo é gerenciado online, garantindo menor investimento inicial e uma infraestrutura leve, escalável e pronta para crescer com o seu negócio..</p>
-      </div>
+  </div>
+  <div class="pabx-bottom">
+    <div class="pabx-block-small">
+      <img src="mobilidade.png" alt="Flexibilidade" class="pabx-icon">
+      <strong>Flexibilidade</strong>
+      <p>Com acesso aos ramais de qualquer lugar, pelo celular ou notebook, sua equipe mantém a comunicação fluida e produtiva, transformando qualquer lugar em um escritório ágil e conectado.</p>
+    </div>
+    <div class="pabx-block-small">
+      <img src="engrenagem.png" alt="Conexão e Eficiência" class="pabx-icon">
+      <strong>Conexão e Eficiência</strong>
+      <p>O PABX IP conecta-se facilmente aos seus sistemas de gestão, como CRMs e plataformas de cobrança, e automatiza funções de atendimento, como URAs e filas, tornando o fluxo de trabalho mais ágil e oferecendo aos clientes uma experiência rápida, eficiente e inesquecível.</p>
+    </div>
+    <div class="pabx-block-small">
+      <img src="gestao.png" alt="Controle Total" class="pabx-icon">
+      <strong>Controle Total</strong>
+      <p>A ferramenta entrega relatórios completos em tempo real, oferecendo total visibilidade sobre a performance de atendimento e permitindo controlar com precisão cada interação com clientes e parceiros. Mais eficiência, mais agilidade e decisões baseadas em dados.</p>
+    </div>
+    <div class="pabx-block-small">
+      <img src="custos.png" alt="Reduz Custos" class="pabx-icon">
+      <strong>Reduz Custos</strong>
+      <p>Com o PABX IP em nuvem, você elimina completamente a dependência de equipamentos físicos, cortando gastos com manutenção e atualizações. Tudo é gerenciado online, garantindo menor investimento inicial e uma infraestrutura leve, escalável e pronta para crescer com o seu negócio..</p>
     </div>
   </div>
 </section>
