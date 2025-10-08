@@ -18,7 +18,8 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
-html,body{height:100%;}
+/* ADIÇÃO: impede rolagem horizontal/corte em telas pequenas */
+html,body{height:100%;overflow-x:hidden;}
 
 /* ==========================
    AJUSTE 1 — ESCALA FLUIDA
@@ -41,7 +42,9 @@ body{
 @media (max-width:1400px){
   body{
     transform: scale(calc(100vw / 1400));
+    transform-origin: top center; /* ADIÇÃO: garante centralização do scale */
     width: 1400px; /* garante que o layout se comporte como o desktop */
+    margin: 0 auto; /* ADIÇÃO: centraliza o layout após o scale */
   }
 }
 
