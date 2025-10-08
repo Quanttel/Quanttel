@@ -18,8 +18,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
-/* ADIÇÃO: impede rolagem horizontal/corte em telas pequenas */
-html,body{height:100%;overflow-x:hidden;}
+html,body{height:100%;}
 
 /* ==========================
    AJUSTE 1 — ESCALA FLUIDA
@@ -31,20 +30,25 @@ body{
   overflow-x:hidden;
   line-height:1.45;
   background:url('fundo-site2.png') center/cover no-repeat fixed;
-  transform-origin: top center; /* origem do scale */
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
 
-/* Ajuste: layout pensado para 1400px de largura como "desktop base".
-   Em telas menores, o body é reduzido proporcionalmente para caber.
-   (Se preferir outra base, eu altero o 1400 para o desejado.) */
+/* -- Nova estrutura: wrapper que será escalado (base 1400px) -- */
+.site-wrapper {
+  transform-origin: top center;
+  width: 1400px; /* base desktop */
+  margin: 0 auto;
+  /* garante que conteúdo não quebre fora do wrapper */
+  box-sizing: border-box;
+}
+
+/* Escala proporcional em telas menores */
 @media (max-width:1400px){
-  body{
+  .site-wrapper {
     transform: scale(calc(100vw / 1400));
-    transform-origin: top center; /* ADIÇÃO: garante centralização do scale */
-    width: 1400px; /* garante que o layout se comporte como o desktop */
-    margin: 0 auto; /* ADIÇÃO: centraliza o layout após o scale */
+    /* ajusta a altura do wrapper para evitar cortar conteúdo verticalmente */
+    height: calc(100vh / (100vw / 1400));
   }
 }
 
@@ -300,6 +304,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 </style>
 </head>
 <body>
+  <div class="site-wrapper">
 <header>
   <div class="header-center"><h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1></div>
   <div class="logo-container">
@@ -420,6 +425,7 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 </section>
 
 <footer>&copy; Quanttel Telecom. Todos os direitos reservados.</footer>
+  </div> <!-- /.site-wrapper -->
 
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
