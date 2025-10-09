@@ -30,25 +30,18 @@ body{
   overflow-x:hidden;
   line-height:1.45;
   background:url('fundo-site2.png') center/cover no-repeat fixed;
+  transform-origin: top center; /* origem do scale */
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
 
-/* -- Nova estrutura: wrapper que será escalado (base 1400px) -- */
-.site-wrapper {
-  transform-origin: top center;
-  width: 1400px; /* base desktop */
-  margin: 0 auto;
-  /* garante que conteúdo não quebre fora do wrapper */
-  box-sizing: border-box;
-}
-
-/* Escala proporcional em telas menores */
+/* Ajuste: layout pensado para 1400px de largura como "desktop base".
+   Em telas menores, o body é reduzido proporcionalmente para caber.
+   (Se preferir outra base, eu altero o 1400 para o desejado.) */
 @media (max-width:1400px){
-  .site-wrapper {
+  body{
     transform: scale(calc(100vw / 1400));
-    /* ajusta a altura do wrapper para evitar cortar conteúdo verticalmente */
-    height: calc(100vh / (100vw / 1400));
+    width: 1400px; /* garante que o layout se comporte como o desktop */
   }
 }
 
@@ -90,6 +83,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
 .free-images{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px;position:relative;}
 .free-images img{width:300px;border-radius:12px;transition:transform 2.5s ease, opacity .6s ease;opacity:0;transform:translateY(30px);cursor:pointer;border:none;padding:0;}
 @keyframes mortalSpin{0%{transform:rotateX(0deg);}50%{transform:rotateX(360deg);}100%{transform:rotateX(0deg);}}
+/* #services moved to next line to preserve exact content? */
 #services{margin-top:40px;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
 .service{background:rgba(255,255,255,0.04);padding:18px 16px;border-radius:12px;font-weight:500;overflow:hidden;transition:all .3s;}
@@ -109,8 +103,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
   padding:60px 20px;
   width:100vw;
   margin-left: calc(-50vw + 50%);
-  /* degradê diagonal inspirado no print enviado */
-  background: linear-gradient(135deg, #001a3d 0%, #003a8c 45%, #001f5c 100%);
+  background: url('fundo-pabx.png') center/cover no-repeat;
   color:#fff;
   box-sizing:border-box;
 }
@@ -304,7 +297,6 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 </style>
 </head>
 <body>
-  <div class="site-wrapper">
 <header>
   <div class="header-center"><h1 class="logo-text">SOLUÇÕES INTELIGENTES</h1></div>
   <div class="logo-container">
@@ -425,7 +417,6 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 </section>
 
 <footer>&copy; Quanttel Telecom. Todos os direitos reservados.</footer>
-  </div> <!-- /.site-wrapper -->
 
 <a class="whatsapp-float" href="https://wa.me/5544991617583" target="_blank"><img src="wts.png" alt="WhatsApp"></a>
 
