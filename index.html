@@ -21,43 +21,59 @@
 html,body{height:100%;}
 
 /* ==========================
-   AJUSTE 1 — ESCALA FLUIDA
-   (Opção A) - mantém layout desktop
-   e redimensiona proporcionalmente em telas menores.
+   AJUSTES GERAIS (mantive o resto do seu CSS, modifiquei apenas o necessário)
    ========================== */
+
+/* --- ALTERADO: evitar o scale que causava corte e overflow --- */
 body{
   color:#fff;
+  /* mantenho overflow-x hidden para evitar vazamentos acidentais; 
+     containers específicos (grids/imagens) terão overflow-x:auto quando necessário */
   overflow-x:hidden;
   line-height:1.45;
   background:url('fundo-site2.png') center/cover no-repeat fixed;
-  transform-origin: top center; /* origem do scale */
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  /* centro visualmente o conteúdo principal via containers com max-width + margin auto */
+  -webkit-font-smoothing:antialiased;
 }
 
-/* Ajuste: layout pensado para 1400px de largura como "desktop base".
-   Em telas menores, o body é reduzido proporcionalmente para caber.
-   (Se preferir outra base, eu altero o 1400 para o desejado.) */
-@media (max-width:1400px){
-  body{
-    transform: scale(calc(100vw / 1400));
-    width: 1400px; /* garante que o layout se comporte como o desktop */
-  }
-}
+/* REMOVIDO: @media (max-width:1400px) { transform: scale(...) width:1400px } */
 
 /* fundo escuro geral */
 body::after{content:"";position:fixed;inset:0;background:rgba(2,6,23,0.55);z-index:-1;pointer-events:none;}
 
 a{text-decoration:none;color:inherit;transition:all .25s;}
-header{position:relative;width:100%;z-index:999;padding-top:20px;text-align:center;}
+
+/* --- ALTERADO: centralizar header e limitar largura para evitar empurrar conteúdo --- */
+header{
+  position:relative;
+  width:100%;
+  max-width:1200px; /* centraliza e limita largura */
+  margin: 0 auto;   /* centro */
+  z-index:999;
+  padding-top:20px;
+  text-align:center;
+  box-sizing:border-box;
+}
 .header-center{margin-top:20px;position:relative;z-index:100;}
 .logo-text{font-size:1.3rem;font-weight:700;color:var(--accent);letter-spacing:-0.5px;position:relative;display:inline-block;margin-top:10px;}
 .logo-container{position:relative;width:100%;text-align:center;margin-top:20px;}
-.logo-container .quanttel-logo{height:220px;width:auto;transition:transform .35s ease, filter .25s ease;}
+.logo-container .quanttel-logo{height:220px;width:auto;transition:transform .35s ease, filter .25s ease;max-width:100%;}
 .logo-container .quanttel-logo:hover{transform:scale(1.08);filter:brightness(1.03);}
-.header-right{position:absolute;top:12px;right:28px;display:flex;gap:12px;z-index:1000;}
+
+/* --- ALTERADO: header-right não deve sair da tela em mobile; uso absolute só em telas grandes --- */
+.header-right{
+  position: absolute;
+  top:12px;
+  right:28px;
+  display:flex;
+  gap:12px;
+  z-index:1000;
+}
 .header-right .nav-btn-small{display:inline-block;padding:8px 16px;min-width:80px;border-radius:8px;font-weight:600;color:#fff;background:transparent;position:relative;overflow:hidden;font-size:0.95rem;white-space:nowrap;text-align:center;transition:all .25s;}
 .header-right .nav-btn-small:hover{color:var(--accent);}
+
 .btn,.nav-btn{display:inline-block;padding:12px 24px;border-radius:12px;font-weight:700;color:#fff;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--btn),var(--btn-hover));transition:transform .25s,box-shadow .25s,filter .25s,background .3s ease;}
 .btn.ghost{background:transparent;border:2px solid var(--light-border);}
 .btn.ghost:hover{background:var(--btn-hover-gold);color:#000;}
@@ -65,7 +81,18 @@ header{position:relative;width:100%;z-index:999;padding-top:20px;text-align:cent
 .btn::before,.nav-btn::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);transform:skewX(-20deg);}
 .btn:hover::before,.nav-btn:hover::before{animation:shine 1s forwards;}
 @keyframes shine{0%{left:-80%;}100%{left:160%;}}
-main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-direction:column;}
+
+/* --- ALTERADO: main centralizado e responsivo --- */
+main{
+  max-width:1200px;
+  margin:60px auto 60px;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+}
+
+/* cards (mantive a base, só garanti limite de largura) */
 .card{background:var(--card-bg);border-radius:14px;padding:32px;box-shadow:0 12px 42px rgba(0,0,0,0.6);text-align:left;opacity:0;transform:translateY(40px);transition:transform .35s ease,box-shadow .35s ease,opacity .6s ease;position:relative;z-index:1;margin-bottom:40px;}
 .card.visible{opacity:1;transform:translateY(0);}
 .card:hover{transform:scale(1.03);box-shadow:0 18px 60px rgba(0,0,0,0.75);}
@@ -73,6 +100,8 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
 .card p{transition:transform .3s ease,color .3s ease,text-shadow .3s ease;}
 .card .actions{margin-top:32px;}
 .actions a{margin-right:12px;}
+
+/* extraCards - mantive, mas limitei largura */
 #extraCards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:20px;margin-bottom:40px;max-height:0;opacity:0;overflow:hidden;transition: max-height 1.5s ease, opacity 1.5s ease;width:100%;justify-items:center;}
 .extra-card{background:var(--btn);padding:20px;border-radius:12px;color:#fff;font-weight:700;text-align:center;cursor:pointer;transition:transform .28s, box-shadow .28s,width 0.3s;}
 .extra-card .title{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
@@ -80,9 +109,32 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
 .extra-card:hover{transform:translateY(-6px); box-shadow:0 14px 42px rgba(0,0,0,0.45);}
 #testeGratis{background: transparent;color: #fff;grid-column: 1 / -1;}
 #testeGratis:hover{background-color: var(--teste-verde);color: #fff;}
-.free-images{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px;position:relative;}
-.free-images img{width:300px;border-radius:12px;transition:transform 2.5s ease, opacity .6s ease;opacity:0;transform:translateY(30px);cursor:pointer;border:none;padding:0;}
-@keyframes mortalSpin{0%{transform:rotateX(0deg);}50%{transform:rotateX(360deg);}100%{transform:rotateX(0deg);}}
+
+/* --- ALTERADO: evitar empilhamento das imagens; usar scroll horizontal em telas pequenas --- */
+.free-images{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  /* evita quebrar linha */
+  flex-wrap:nowrap; /* --- ALTERADO --- */
+  margin-top:40px;
+  position:relative;
+  overflow-x:auto; /* permite scroll se não couber */
+  -webkit-overflow-scrolling: touch;
+}
+.free-images img{
+  width:300px;
+  border-radius:12px;
+  transition:transform 2.5s ease, opacity .6s ease;
+  opacity:0;
+  transform:translateY(30px);
+  cursor:pointer;
+  border:none;
+  padding:0;
+  flex:0 0 auto; /* evita shrink/empilhamento */
+}
+@keyframes mortalSpin{0%{transform:rotateX(0deg);}50%{transform:rotateX(360deg);}100%{transform:rotateX(0deg);}()}
+
 #services{margin-top:40px;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px;}
 .service{background:rgba(255,255,255,0.04);padding:18px 16px;border-radius:12px;font-weight:500;overflow:hidden;transition:all .3s;}
@@ -90,22 +142,25 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
 .service:hover {transform:scale(1.05); color:#00c3ff;}
 
 /* ==========================
-   AJUSTE 4 — FUNDO DEGRADÊ PABX IP
-   (substitui o fundo sólido por um degradê parecido com o print)
+   AJUSTE PABX — fundo e grid sem empilhar
    ========================== */
+
+/* --- ALTERADO: remover margin-left calc que causava overflow; usar largura 100% e min-height para preencher a tela --- */
 .pabx-card{
   display:flex;
   flex-direction:column;
-  flex-wrap:wrap;
+  /* removi flex-wrap:wrap (evitava comportamento lateral) */
   justify-content:flex-start;
-  align-items:flex-start;
+  align-items:center; /* --- ALTERADO para centralizar conteúdo interno --- */
   padding:60px 20px;
-  width:100vw;
-  margin-left: calc(-50vw + 50%);
+  width:100%; /* ocupa toda a largura do viewport */
+  margin:0; /* removi margem negativa */
+  min-height:100vh; /* garante que preencha toda a altura da tela */
   /* degradê diagonal inspirado no print enviado */
   background: linear-gradient(135deg, #001a3d 0%, #003a8c 45%, #001f5c 100%);
   color:#fff;
   box-sizing:border-box;
+  overflow-x:visible;
 }
 
 /* pequenos ajustes já existentes (mantidos) */
@@ -147,10 +202,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
   opacity:0.85;
 }
 
-/* ==========================
-   AJUSTE 2 — EFEITO NO TÍTULO "PABX IP EM NUVEM"
-   (diminui levemente no hover e aplica o feixe de luz animado)
-   ========================== */
+/* Título com efeito (mantive) */
 .pabx-card h4{
   text-align:center;
   font-size:2.2rem;
@@ -161,10 +213,7 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
   transition:transform 0.4s ease;
   z-index:1;
 }
-.pabx-card h4:hover{
-  transform:scale(0.9);
-}
-/* feixe de luz somente sobre o título */
+.pabx-card h4:hover{transform:scale(0.9);}
 .pabx-card h4::before{
   content:"";
   position:absolute;
@@ -174,39 +223,79 @@ main{max-width:1200px;margin:60px auto 60px;padding:0 20px;display:flex;flex-dir
   transform:skewX(-20deg);
   pointer-events:none;
 }
-.pabx-card h4:hover::before{
-  animation:shineTitle 1.2s forwards;
-}
-@keyframes shineTitle{
-  0%{left:-75%;}
-  100%{left:130%;}
-}
+.pabx-card h4:hover::before{animation:shineTitle 1.2s forwards;}
+@keyframes shineTitle{0%{left:-75%;}100%{left:130%;}}
 
-/* ==========================
-   AJUSTE 3 — FUNDO "VIDRO ESCURO" NOS DOIS PARÁGRAFOS
-   (aplica apenas ao primeiro parágrafo do topo e ao .pabx-paragrafo-secundario)
-   ========================== */
-
-/* mantém o espaçamento dos parágrafos (regra base) */
-.pabx-card p{margin-left:0;line-height:1.7;margin-bottom:30px;}
-
-/* Aplica o vidro escuro apenas aos dois parágrafos principais:
-   - primeiro parágrafo dentro do primeiro bloco (container superior)
-   - parágrafo com a classe .pabx-paragrafo-secundario */
-.pabx-card > div:first-child p,
-.pabx-paragrafo-secundario {
-  background: rgba(0,0,0,0.42);      /* vidro escuro */
-  backdrop-filter: blur(8px);         /* desfoque por trás */
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 20px;
+/* --- ALTERADO: grids configuradas para NÃO empilhar; uso minmax + overflow-x para pequenos devices --- */
+.pabx-card .pabx-grid-3x2 {
+  display: grid;
+  /* mantém 3 colunas, cada coluna tem largura mínima para evitar empilhamento */
+  grid-template-columns: repeat(3, minmax(220px, 1fr)); /* --- ALTERADO --- */
+  gap: 24px;
+  justify-items: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
   box-sizing: border-box;
-  margin: 0 auto 30px auto;          /* centraliza e mantém espaçamento inferior */
-  max-width: 900px;                  /* evita que o fundo ocupe 100% em telas grandes */
+  overflow-x:auto; /* permite scroll horizontal em telas muito pequenas */
+  -webkit-overflow-scrolling: touch;
+}
+.pabx-card .pabx-paragrafo-secundario {
+  max-width: 900px;
+  text-align: center;
+  line-height: 1.7;
+  margin: 4rem auto 0 auto; /* reduzi a distância excessiva (era 8rem) */
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+.pabx-card .pabx-grid-4x1 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr)); /* --- ALTERADO --- */
+  gap: 20px;
+  justify-items: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto 0 auto; /* reduzi a distância (era 6rem) */
+  box-sizing: border-box;
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* --- ALTERADO: removi regras que forçavam empilhamento em telas <1024px e <620px */
+/* Em vez de empilhar, reduzo a largura mínima das colunas para caber mais, se possível */
+@media (max-width: 1024px) {
+  .pabx-card .pabx-grid-3x2 { grid-template-columns: repeat(3, minmax(180px, 1fr)); }
+  .pabx-card .pabx-grid-4x1 { grid-template-columns: repeat(4, minmax(180px, 1fr)); }
+  /* header-right perde position:absolute para não 'sair' da viewport */
+  .header-right{position:static; margin-top:12px; right:auto; top:auto;}
+  header{padding-bottom:8px;}
+  .logo-container .quanttel-logo{height:160px;}
+}
+
+/* em telas muito pequenas, permito scroll horizontal nas grids em vez de empilhar */
+@media (max-width: 620px) {
+  .pabx-card{padding:40px 16px;}
+  .free-images img {width:250px !important;}
+  .pabx-card .pabx-grid-3x2 { grid-template-columns: repeat(3, minmax(160px, 1fr)); }
+  .pabx-card .pabx-grid-4x1 { grid-template-columns: repeat(4, minmax(160px, 1fr)); }
+  .pabx-card .pabx-paragrafo-secundario { margin: 2.4rem auto 0 auto; }
+  .logo-container .quanttel-logo{height:140px;}
 }
 
 /* === resto do CSS original (footer, lightbox, responsivos) === */
-.contact-card{margin-top:40px;background:var(--glass);padding:20px 18px;border-radius:12px;text-align:left;max-width:400px;margin-left:0;}
+.contact-card{
+  margin-top:40px;
+  background:var(--glass);
+  padding:20px 18px;
+  border-radius:12px;
+  text-align:left;
+  max-width:400px;         /* <- ajuste aplicado: limita largura máxima */
+  width:100%;              /* permite responsividade dentro do max-width */
+  margin-left:auto;        /* centraliza horizontalmente */
+  margin-right:auto;       /* centraliza horizontalmente */
+}
 .contact-card h3{color:#fff;margin-bottom:16px;}
 .contact-card a{color:var(--accent);font-weight:700;font-size:1rem;display:flex;align-items:center;gap:8px;margin:8px 0;transition:all .25s;}
 .contact-card a img.icon{width:18px;height:18px;display:inline-block;vertical-align:middle;}
@@ -217,83 +306,6 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
 #lightbox{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:2000;}
 #lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
 #lightbox .close-lightbox{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;font-weight:bold;}
-
-/* RESPONSIVE: mantém comportamento original para pequenos ajustes visuais */
-@media(max-width:1024px){
-  .pabx-card > div:first-child,
-  .pabx-card > div:nth-child(2),
-  .pabx-card > div:last-child {
-    flex: 1 1 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-    margin-bottom: 20px;
-  }
-  .pabx-card > div:nth-child(2),
-  .pabx-card > div:last-child{
-    grid-template-columns:1fr !important;
-    gap:16px !important;
-  }
-  .pabx-block, .pabx-block-small {
-    width: 100% !important;
-    margin-bottom: 16px;
-  }
-  .pabx-card > div:first-child div {text-align:center !important;}
-}
-@media(max-width:620px){
-  .pabx-card {padding:40px 16px !important;}
-  .free-images img {width:80% !important;}
-}
-@media(max-width:480px){
-  .free-images img {width:90% !important;}
-}
-
-/* --- AJUSTE PABX: grids centralizados (mantive as regras originais) --- */
-.pabx-card .pabx-grid-3x2 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  justify-items: center;
-  align-items: stretch;
-  width: 100%;
-  max-width: 1200px;
-  margin: 40px auto 0 auto;
-  box-sizing: border-box;
-}
-.pabx-card .pabx-paragrafo-secundario {
-  max-width: 900px;
-  text-align: center;
-  line-height: 1.7;
-  margin: 8rem auto 0 auto;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
-.pabx-card .pabx-grid-4x1 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  justify-items: center;
-  align-items: stretch;
-  width: 100%;
-  max-width: 1200px;
-  margin: 6rem auto 0 auto;
-  box-sizing: border-box;
-}
-@media (max-width: 620px) {
-  .pabx-card .pabx-grid-3x2 {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-    margin-top: 24px;
-  }
-  .pabx-card .pabx-grid-4x1 {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-    margin-top: 32px;
-  }
-  .pabx-card .pabx-paragrafo-secundario {
-    margin: 2.5rem auto 0 auto;
-  }
-}
 </style>
 </head>
 <body>
