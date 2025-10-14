@@ -462,7 +462,7 @@ const lightbox=document.getElementById('lightbox');const lightboxImg=lightbox.qu
 imgs.forEach(img=>{img.addEventListener('click', ()=>{lightboxImg.src = img.src; lightbox.style.display='flex';});});
 closeLb.addEventListener('click', ()=>{lightbox.style.display='none';});
 lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
-// === EFEITO FADE-IN GLOBAL (DESCENDO E SUBINDO) ===
+// === EFEITO SUAVE AO ROLAR (DESCENDO E SUBINDO) ===
 document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -474,8 +474,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.15 });
 
-  // Seleciona todos os elementos visíveis dentro do body, exceto scripts e estilos
-  document.querySelectorAll("body *:not(script):not(style):not(link)").forEach(el => {
+  // Aplique apenas aos blocos principais, mantendo os efeitos originais intactos
+  const targets = document.querySelectorAll(
+    ".card, .free-images img, .extra-card, .service, .pabx-block, .pabx-block-small, footer, header, .contact-card"
+  );
+
+  targets.forEach(el => {
     el.classList.add("fade-in");
     observer.observe(el);
   });
