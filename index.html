@@ -277,6 +277,18 @@ footer{margin-top:36px;padding:18px 14px;background:rgba(0,0,0,0.66);text-align:
   .logo-text{font-size:1rem;}
   .logo-container .quanttel-logo{width:46vw;}
 }
+/* === EFEITO DE APARIÇÃO SUAVE GLOBAL === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
@@ -450,6 +462,24 @@ const lightbox=document.getElementById('lightbox');const lightboxImg=lightbox.qu
 imgs.forEach(img=>{img.addEventListener('click', ()=>{lightboxImg.src = img.src; lightbox.style.display='flex';});});
 closeLb.addEventListener('click', ()=>{lightbox.style.display='none';});
 lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
+// === EFEITO FADE-IN GLOBAL (DESCENDO E SUBINDO) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Seleciona todos os elementos visíveis dentro do body, exceto scripts e estilos
+  document.querySelectorAll("body *:not(script):not(style):not(link)").forEach(el => {
+    el.classList.add("fade-in");
+    observer.observe(el);
+  });
+});
 </script>
 </body>
 </html>
